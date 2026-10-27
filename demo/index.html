@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Transfer Referral Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+/* Layout: case list on the left, the teller's notes and the two checks side by side on the right, like a review desk */
+:root {
+  --bg: #f6f7f6; --surface: #ffffff; --fg: #18211f; --muted: #5a6764; --line: #dde3e1;
+  --accent: #1d5c55; --accent-soft: #e4efec;
+  --flag: #a6461f; --flag-soft: #fbece4; --ok: #2c7a4b; --ok-soft: #e5f3ea; --mark: #fde9a8;
+  --display: "Source Serif 4", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121816; --surface: #1a2220; --fg: #e6ecea; --muted: #9aa8a4; --line: #2c3633;
+    --accent: #7cc4b8; --accent-soft: #1f312d; --flag: #f0a07c; --flag-soft: #3a2519; --ok: #7fcf9b; --ok-soft: #1b3123; --mark: #5c4b12; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121816; --surface: #1a2220; --fg: #e6ecea; --muted: #9aa8a4; --line: #2c3633;
+  --accent: #7cc4b8; --accent-soft: #1f312d; --flag: #f0a07c; --flag-soft: #3a2519; --ok: #7fcf9b; --ok-soft: #1b3123; --mark: #5c4b12; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 56px; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, h3 { margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.4rem); }
+h2 { font-family: var(--display); font-weight: 600; font-size: 1.35rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+button { font: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a { color: var(--accent); }
+
+.head { display: flex; flex-direction: column; gap: 10px; max-width: 72ch; }
+.notice { font-size: 0.88rem; border: 1px solid var(--line); background: var(--surface); padding: 10px 14px; border-radius: 8px; }
+
+.signs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.sign { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 4px; }
+.sign .code { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); font-weight: 500; }
+.sign p { font-size: 0.9rem; }
+
+.results { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+th, td { padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+thead th { font-family: var(--mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.num { text-align: right; }
+
+.desk { display: grid; grid-template-columns: 260px 1fr; gap: 20px; align-items: start; }
+.cases { display: flex; flex-direction: column; gap: 6px; }
+.case-btn { text-align: left; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.case-btn:hover { border-color: var(--accent); }
+.case-btn[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.case-btn .small { font-size: 0.8rem; color: var(--muted); }
+.panel { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.notes { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.notes p.text { font-size: 0.98rem; max-width: 70ch; }
+mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 2px; }
+textarea { width: 100%; min-height: 130px; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); resize: vertical; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.check { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.check-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.rows { display: flex; flex-direction: column; gap: 8px; }
+.row { display: grid; grid-template-columns: 22px 1fr; gap: 8px; font-size: 0.9rem; }
+.row .dot { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 0.7rem; font-weight: 600; margin-top: 2px; }
+.dot.on { background: var(--flag); color: var(--surface); }
+.dot.off { border: 1.5px solid var(--line); }
+.row .ev { color: var(--muted); font-size: 0.84rem; }
+.verdict { border-radius: 6px; padding: 8px 12px; font-weight: 600; font-size: 0.9rem; }
+.verdict.flag { background: var(--flag-soft); color: var(--flag); }
+.verdict.ok { background: var(--ok-soft); color: var(--ok); }
+.tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+.tag.miss { border-color: var(--flag); color: var(--flag); }
+.tag.match { border-color: var(--ok); color: var(--ok); }
+
+.referral { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.referral pre { margin: 0; white-space: pre-wrap; font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; background: var(--bg); border-radius: 6px; padding: 12px 14px; }
+.btn { border: 1px solid var(--accent); color: var(--accent); background: var(--surface); border-radius: 6px; padding: 7px 14px; font-weight: 500; font-size: 0.88rem; }
+.btn.primary { background: var(--accent); color: var(--surface); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.prompt details { font-size: 0.88rem; }
+.prompt pre { white-space: pre-wrap; font-family: var(--mono); font-size: 0.8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px; margin: 8px 0 0; }
+footer { font-size: 0.84rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 860px) {
+  .signs { grid-template-columns: 1fr 1fr; }
+  .desk { grid-template-columns: 1fr; }
+  .cases { flex-direction: row; overflow-x: auto; padding-bottom: 4px; }
+  .case-btn { min-width: 180px; }
+  .compare { grid-template-columns: 1fr; }
+}
+@media (max-width: 460px) { .signs { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <span class="label">Portfolio demo · Andreea Pana</span>
+    <h1>Transfer Referral Assistant</h1>
+    <p>At a money transfer counter, the clearest warning signs come from the conversation with the customer, not from the numbers. This demo reads a teller's notes, checks them against four warning signs from my own KYC/AML work, and drafts the referral to the compliance team. It compares a simple keyword check with an AI review.</p>
+    <p class="notice"><strong>The tool never decides.</strong> It only helps the teller write a clear referral. The teller stays calm and professional, and the compliance team decides whether to hold an additional interview. All cases are fictional.</p>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:12px" aria-labelledby="signs-h">
+    <h2 id="signs-h">The four warning signs</h2>
+    <div class="signs" id="signs"></div>
+  </section>
+
+  <section class="results" aria-labelledby="res-h">
+    <h2 id="res-h">Results on 8 fictional cases</h2>
+    <div class="table-wrap"><table id="results"></table></div>
+    <p class="muted" style="font-size:0.86rem">A small demo, not a validated model. The expected answer for each case is my own judgement as a teller.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px" aria-labelledby="desk-h">
+    <h2 id="desk-h">Review a case</h2>
+    <div class="desk">
+      <div class="cases" id="cases" role="group" aria-label="Cases"></div>
+      <div class="panel" id="panel"></div>
+    </div>
+  </section>
+
+  <section class="prompt">
+    <details>
+      <summary>The instruction given to the AI</summary>
+      <pre id="prompt-text"></pre>
+    </details>
+  </section>
+
+  <footer>Built by Andreea Pana with Claude. The AI reviews of the 8 cases were generated with Claude using the instruction above and are stored on the page.</footer>
+</div>
+
+<script>
+const SIGNS = [
+  { id: "S1", name: "Doesn't know the receiver", text: "The sender does not know basic information about the person they send to." },
+  { id: "S2", name: "Uneasy about the relationship", text: "The sender acts nervous or changes their story when asked how they know the receiver." },
+  { id: "S3", name: "Won't explain the transfer", text: "The sender does not want to give more information about the transfer." },
+  { id: "S4", name: "Can't prove the source", text: "The sender cannot show where the money comes from." }
+];
+
+// Keyword check: transparent phrase lists, the way a simple rule system works.
+const RULES = {
+  S1: [/do(es)?n'?t know/i, /did(n'?t| not) know/i, /does not know/i, /can'?t say (his |her |their )?(surname|last name|address|city)/i, /only (has|had) a phone number/i, /no idea who/i],
+  S2: [/nervous/i, /acting weird/i, /story changed/i, /changed (his|her|their) story/i, /evasive/i, /hesitat/i, /contradict/i],
+  S3: [/refuse/i, /won'?t say/i, /wouldn'?t say/i, /did not want to (say|explain|provide)/i, /my business/i],
+  S4: [/no receipt/i, /no proof/i, /can'?t prove/i, /cannot prove/i, /no documentation/i, /no sales contract/i, /can'?t explain where/i]
+};
+
+const CASES = [
+  { id: "c1", title: "Monthly family support", amount: "2,500 DKK",
+    notes: "Regular customer sending money to her mother in Romania, as she does every month. She gave her mother's full name, city and phone number without hesitation. Purpose: family support. Paid from her salary account.",
+    expected: [],
+    ai: {} },
+  { id: "c2", title: "Friend met online", amount: "18,000 DKK",
+    notes: "Customer wants to send money to a friend he met online. He can't say his surname or which city he lives in and only has a phone number. Says the money is for a plane ticket so they can meet. When I asked how they met he became nervous and changed his story from friend to fiancé.",
+    expected: ["S1", "S2"],
+    ai: { S1: "can't say his surname or which city he lives in and only has a phone number", S2: "became nervous and changed his story from friend to fiancé" } },
+  { id: "c3", title: "Cash from a car sale", amount: "45,000 DKK",
+    notes: "Customer is sending cash to his brother in Poland and knows his details well. Says the cash is from selling his car, but has no sales contract or receipt and no bank record of the payment.",
+    expected: ["S4"],
+    ai: { S4: "no sales contract or receipt and no bank record of the payment" } },
+  { id: "c4", title: "Payment to a company", amount: "30,000 DKK",
+    notes: "Customer wants to send money to a company abroad and gave the company name. When asked what the payment is for, he refused to explain and said it is his business.",
+    expected: ["S3"],
+    ai: { S3: "refused to explain and said it is his business" } },
+  { id: "c5", title: "Different wording", amount: "22,000 DKK",
+    notes: "Could not tell me where the recipient lives or what his last name is. When I asked how they met, he looked away, gave short answers and the story changed twice. Declined to say what the money was for. Has no bank statement or payslip for the cash.",
+    expected: ["S1", "S2", "S3", "S4"],
+    ai: { S1: "could not tell me where the recipient lives or what his last name is", S2: "looked away, gave short answers and the story changed twice", S3: "declined to say what the money was for", S4: "has no bank statement or payslip for the cash" } },
+  { id: "c6", title: "Student paying rent", amount: "6,000 DKK",
+    notes: "Student paying rent to a landlord in Spain. Showed the rental agreement with the landlord's name and address. Was unsure of the landlord's phone number at first but found it saved in her phone. Paid from her student account.",
+    expected: [],
+    ai: {} },
+  { id: "c7", title: "Sending for someone else", amount: "12,000 DKK",
+    notes: "Customer says someone else gave him the money to send. He doesn't know who the recipient is, only that it is a friend of his boss. He can't explain where the cash came from.",
+    expected: ["S1", "S4"],
+    ai: { S1: "doesn't know who the recipient is, only that it is a friend of his boss", S4: "can't explain where the cash came from" } },
+  { id: "c8", title: "First-time customer", amount: "9,000 DKK",
+    notes: "First time using a money transfer service and was nervous about filling in the form. Sending money to her daughter who studies in Lisbon; gave her full name, address and university. Showed a payslip for the money.",
+    expected: [],
+    ai: {}, aiNote: "She was nervous about the form, not about the relationship, so this is not a warning sign." }
+];
+
+const PROMPT = `You support a teller at a money transfer counter. Read the teller's notes about a customer and check them against four warning signs:
+S1 Doesn't know the receiver: the sender does not know basic information about the person they send to.
+S2 Uneasy about the relationship: the sender acts nervous or changes their story when asked how they know the receiver. Nervousness about something else (for example the form) does not count.
+S3 Won't explain the transfer: the sender does not want to give more information about the transfer.
+S4 Can't prove the source: the sender cannot show where the money comes from.
+For each sign, say whether the notes show it and quote the exact words that show it. Do not guess beyond the notes. You never decide; you only help the teller write a referral to compliance.
+Answer only with JSON: {"S1": "quote or empty string", "S2": "...", "S3": "...", "S4": "..."}
+
+Teller's notes:
+`;
+
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function ruleCheck(text) {
+  const out = {};
+  for (const s of SIGNS) {
+    for (const re of RULES[s.id]) { const m = text.match(re); if (m) { out[s.id] = m[0]; break; } }
+  }
+  return out;
+}
+function highlight(text, phrases) {
+  let html = esc(text);
+  phrases.filter(Boolean).sort((a, b) => b.length - a.length).forEach((p) => {
+    const e = esc(p).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    html = html.replace(new RegExp(e, "i"), (m) => `<mark>${m}</mark>`);
+  });
+  return html;
+}
+
+// --- results table, computed from the cases
+(function results() {
+  let exp = 0, rHit = 0, aHit = 0, rFalse = 0, aFalse = 0, rCase = 0, aCase = 0;
+  CASES.forEach((c) => {
+    const r = ruleCheck(c.notes), a = c.ai;
+    exp += c.expected.length;
+    SIGNS.forEach((s) => {
+      const e = c.expected.includes(s.id);
+      if (r[s.id]) e ? rHit++ : rFalse++;
+      if (a[s.id]) e ? aHit++ : aFalse++;
+    });
+    const shouldFlag = c.expected.length > 0;
+    if ((Object.keys(r).length > 0) === shouldFlag) rCase++;
+    if ((Object.keys(a).length > 0) === shouldFlag) aCase++;
+  });
+  document.getElementById("results").innerHTML = `
+    <thead><tr><th>Measure</th><th class="num">Keyword check</th><th class="num">AI review</th></tr></thead>
+    <tbody>
+      <tr><td>Warning signs found (of ${exp})</td><td class="num">${rHit}</td><td class="num">${aHit}</td></tr>
+      <tr><td>False warning signs</td><td class="num">${rFalse}</td><td class="num">${aFalse}</td></tr>
+      <tr><td>Right referral decision (of ${CASES.length} cases)</td><td class="num">${rCase}</td><td class="num">${aCase}</td></tr>
+    </tbody>`;
+})();
+
+document.getElementById("signs").innerHTML = SIGNS.map((s) => `<div class="sign"><span class="code">${s.id}</span><h3>${s.name}</h3><p class="muted">${s.text}</p></div>`).join("");
+document.getElementById("prompt-text").textContent = PROMPT + "<notes>";
+
+function referralText(found, amount) {
+  if (!Object.keys(found).length) return "No warning signs in the notes. Process the transfer as normal.";
+  const lines = SIGNS.filter((s) => found[s.id]).map((s) => `- ${s.id} ${s.name}: "${found[s.id]}"`);
+  return `To: Compliance team\nSubject: Transfer referred for additional review${amount ? " (" + amount + ")" : ""}\n\nI am referring this transfer before processing. Warning signs noted during the conversation:\n${lines.join("\n")}\n\nThe customer was treated calmly and professionally and has not been told about this referral. Please decide whether an additional interview is needed.`;
+}
+
+function checkCard(title, found, expected, note) {
+  const rows = SIGNS.map((s) => {
+    const on = !!found[s.id];
+    let tag = "";
+    if (expected) {
+      const e = expected.includes(s.id);
+      if (on && !e) tag = ` <span class="tag miss">false sign</span>`;
+      if (!on && e) tag = ` <span class="tag miss">missed</span>`;
+    }
+    return `<div class="row"><span class="dot ${on ? "on" : "off"}">${on ? "!" : ""}</span><div><strong>${s.id}</strong> ${s.name}${tag}${on ? `<div class="ev">"${esc(found[s.id])}"</div>` : ""}</div></div>`;
+  }).join("");
+  const flag = Object.keys(found).length > 0;
+  return `<div class="check">
+    <div class="check-head"><h3>${title}</h3></div>
+    <div class="verdict ${flag ? "flag" : "ok"}">${flag ? "Refer to compliance" : "No warning signs"}</div>
+    <div class="rows">${rows}</div>
+    ${note ? `<p class="muted" style="font-size:0.84rem">${esc(note)}</p>` : ""}
+  </div>`;
+}
+
+const panel = document.getElementById("panel");
+let samplePromise = (window.claude && window.claude.use) ? window.claude.use("sample").catch(() => null) : Promise.resolve(null);
+
+function showCase(c) {
+  const r = ruleCheck(c.notes);
+  const phrases = [...Object.values(r), ...Object.values(c.ai)];
+  panel.innerHTML = `
+    <div class="notes">
+      <div class="check-head"><span class="label">Teller's notes · ${esc(c.title)}</span><span class="label">${esc(c.amount)}</span></div>
+      <p class="text">${highlight(c.notes, phrases)}</p>
+      <p class="muted" style="font-size:0.84rem">Expected: ${c.expected.length ? c.expected.join(", ") : "no warning signs"}</p>
+    </div>
+    <div class="compare">
+      ${checkCard("Keyword check", r, c.expected)}
+      ${checkCard("AI review", c.ai, c.expected, c.aiNote)}
+    </div>
+    <div class="referral"><span class="label">Draft referral (from the AI review, for the teller to check)</span><pre>${esc(referralText(c.ai, c.amount))}</pre></div>`;
+}
+
+function showOwn() {
+  panel.innerHTML = `
+    <div class="notes">
+      <label class="label" for="own-notes">Your own notes</label>
+      <textarea id="own-notes">Customer wants to send money to a man she has never met. She doesn't know his address and got nervous when I asked how they know each other.</textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn primary" id="run-rules" type="button">Run keyword check</button>
+        <button class="btn" id="run-ai" type="button" hidden>Run AI review</button>
+      </div>
+      <p class="muted" id="ai-status" style="font-size:0.84rem">The AI review runs only when your Claude account allows it on this page. The keyword check always works.</p>
+    </div>
+    <div class="compare" id="own-out"></div>
+    <div class="referral" id="own-ref" hidden><span class="label">Draft referral</span><pre id="own-ref-text"></pre></div>`;
+  const ta = document.getElementById("own-notes");
+  let last = { rules: null, ai: null };
+  const draw = () => {
+    document.getElementById("own-out").innerHTML =
+      (last.rules ? checkCard("Keyword check", last.rules) : "") + (last.ai ? checkCard("AI review", last.ai) : "");
+    const src = last.ai || last.rules;
+    const ref = document.getElementById("own-ref");
+    ref.hidden = !src;
+    if (src) document.getElementById("own-ref-text").textContent = referralText(src, "");
+  };
+  document.getElementById("run-rules").onclick = () => { last.rules = ruleCheck(ta.value); draw(); };
+  last.rules = ruleCheck(ta.value); draw();
+  samplePromise.then((sample) => {
+    if (!sample) return;
+    const btn = document.getElementById("run-ai");
+    if (!btn) return;
+    btn.hidden = false;
+    const status = document.getElementById("ai-status");
+    btn.onclick = async () => {
+      btn.disabled = true; status.textContent = "AI is reading the notes…";
+      try {
+        const res = await sample.json(PROMPT + ta.value, { modelTier: "quick" });
+        const found = {};
+        SIGNS.forEach((s) => { const v = res && typeof res[s.id] === "string" ? res[s.id].trim() : ""; if (v) found[s.id] = v; });
+        last.ai = found; draw(); status.textContent = "AI review done. Check the quotes against the notes before using the referral.";
+      } catch (e) {
+        if (e && e.code === "not_granted") { btn.hidden = true; status.textContent = "AI review was not allowed. The keyword check still works."; }
+        else status.textContent = "The AI review didn't finish. Try again in a moment.";
+      } finally { btn.disabled = false; }
+    };
+  });
+}
+
+const casesEl = document.getElementById("cases");
+const items = [...CASES.map((c) => ({ key: c.id, title: c.title, sub: c.expected.length ? `${c.expected.length} warning sign${c.expected.length > 1 ? "s" : ""} expected` : "No warning signs expected" })), { key: "own", title: "Try your own notes", sub: "Type a case" }];
+casesEl.innerHTML = items.map((it) => `<button class="case-btn" type="button" data-key="${it.key}" aria-pressed="false"><span>${esc(it.title)}</span><span class="small">${esc(it.sub)}</span></button>`).join("");
+function select(key) {
+  casesEl.querySelectorAll(".case-btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.key === key)));
+  if (key === "own") showOwn(); else showCase(CASES.find((c) => c.id === key));
+}
+casesEl.addEventListener("click", (e) => { const b = e.target.closest(".case-btn"); if (b) select(b.dataset.key); });
+select("c5");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Andreea Pana · AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<style>
+/* Layout: one calm reading column, projects as numbered case files with problem / build / result / controls rows */
+:root {
+  --bg: #f6f7f6;
+  --surface: #ffffff;
+  --fg: #18211f;
+  --muted: #5a6764;
+  --line: #dde3e1;
+  --accent: #1d5c55;
+  --accent-soft: #e4efec;
+  --good: #2c7a4b;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121816; --surface: #1a2220; --fg: #e6ecea; --muted: #9aa8a4; --line: #2c3633;
+    --accent: #7cc4b8; --accent-soft: #1f312d; --good: #7fcf9b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121816; --surface: #1a2220; --fg: #e6ecea; --muted: #9aa8a4; --line: #2c3633;
+  --accent: #7cc4b8; --accent-soft: #1f312d; --good: #7fcf9b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 920px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 64px;
+  display: flex; flex-direction: column; gap: 56px;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.75rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.15rem; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.label {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* Header */
+header.intro { display: grid; grid-template-columns: 168px 1fr; gap: 32px; align-items: center; }
+header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: cover; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.intro-text { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.role { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; font-size: 0.95rem; }
+.contact .email { font-family: var(--mono); font-size: 0.9rem; user-select: all; }
+.copy {
+  font: inherit; font-size: 0.8rem; padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer;
+}
+.copy:hover { border-color: var(--accent); }
+
+/* Summary */
+.summary { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+.summary > * { min-width: 0; }
+.summary p { max-width: 62ch; }
+.summary .lead { font-size: 1.08rem; }
+.facts { display: flex; flex-direction: column; gap: 14px; border-left: 1px solid var(--line); padding-left: 24px; }
+.facts > div { display: flex; flex-direction: column; gap: 2px; }
+.facts span:last-child { font-size: 0.95rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip { font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); }
+
+/* Projects */
+.section-head { display: flex; flex-direction: column; gap: 6px; }
+.projects { display: flex; flex-direction: column; gap: 40px; }
+article.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 32px; display: flex; flex-direction: column; gap: 22px;
+}
+.p-head { display: flex; flex-direction: column; gap: 8px; }
+.p-head .meta { font-size: 0.92rem; color: var(--muted); }
+.p-num { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.06em; }
+.rows { display: grid; grid-template-columns: 130px 1fr; gap: 14px 24px; }
+.rows dt { padding-top: 3px; }
+.rows dd { margin: 0; min-width: 0; max-width: 64ch; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 500; font-size: 0.92rem;
+  padding: 8px 16px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent);
+}
+.btn.primary { background: var(--accent); color: var(--surface); }
+.btn:hover { opacity: 0.88; }
+
+figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+figcaption { font-size: 0.85rem; color: var(--muted); }
+.steps { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 720px; }
+.steps figcaption b { color: var(--fg); font-weight: 600; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-variant-numeric: tabular-nums; min-width: 520px; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+thead th { font-family: var(--mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+th.chosen, td.chosen { background: var(--accent-soft); }
+thead th.chosen { color: var(--accent); }
+td.num { text-align: right; } th.num { text-align: right; }
+
+.status { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+
+/* Experience */
+.timeline { display: flex; flex-direction: column; }
+.job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
+.job:last-child { border-bottom: 1px solid var(--line); }
+.job .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.job div:last-child { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.job p { color: var(--muted); max-width: 62ch; font-size: 0.95rem; }
+
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.principles div { display: flex; flex-direction: column; gap: 6px; border-top: 2px solid var(--accent); padding-top: 14px; }
+.principles p { font-size: 0.95rem; color: var(--muted); }
+
+footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; }
+
+@media (max-width: 760px) {
+  header.intro { grid-template-columns: 1fr; gap: 20px; }
+  header.intro img { width: 120px; height: 120px; }
+  .summary { grid-template-columns: 1fr; gap: 28px; }
+  .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+  .steps, .pair, .principles { grid-template-columns: 1fr; }
+  .rows { grid-template-columns: 1fr; gap: 4px; }
+  .rows dd { margin-bottom: 12px; }
+  article.project { padding: 22px 18px; }
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  .wrap { gap: 44px; padding-block: 32px 48px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <img src="img/andreea.jpg" alt="Portrait of Andreea Pana">
+    <div class="intro-text">
+      <span class="label">AI portfolio</span>
+      <h1>Andreea Pana</h1>
+      <p class="role">Management accounting master's student at the University of Southern Denmark. I build practical AI tools for finance and accounting work, and I test them before I trust them.</p>
+      <div class="contact">
+        <span><span class="email" id="email">pana.andreea15@yahoo.com</span> <button class="copy" id="copy-email" type="button">Copy</button></span>
+        <a href="https://www.linkedin.com/in/andreea-pana-0421591bb/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary" aria-label="Summary">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <p class="lead">I combine a management accounting education with hands-on experience in compliance and data work. My AI projects start from a real problem, end in something people can use, and include checks on whether the AI is right.</p>
+      <p>The four projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, and my master's thesis on how AI changes the way accountants' performance is evaluated.</p>
+    </div>
+    <div class="facts">
+      <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
+      <div><span class="label">Languages</span><span>Romanian, Danish, English</span></div>
+      <div><span class="label">Tools</span>
+        <div class="chips">
+          <span class="chip">Claude</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">GitHub</span><span class="chip">LLM APIs (Gemini)</span><span class="chip">Vector search</span><span class="chip">Slack bots</span><span class="chip">Excel</span><span class="chip">SQL</span><span class="chip">Regression</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" aria-labelledby="projects-h">
+    <div class="section-head">
+      <span class="label">Selected work</span>
+      <h2 id="projects-h">Projects</h2>
+    </div>
+
+    <article class="project">
+      <div class="p-head">
+        <span class="p-num">Project 1</span>
+        <h3>Examiner Mode: an oral exam simulator</h3>
+        <p class="meta">Built with Claude, Python, JavaScript and GitHub Pages · Course: AI in Accounting and Business, SDU</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>The course's practice website for the Data Analytics in Accounting exam only listed questions. Students could read them but never practise the real situation: answering out loud, under time pressure, while an examiner asks follow-up questions. At my own oral exam I didn't know what to expect, and I panicked.</dd>
+        <dt class="label">What I built</dt>
+        <dd>An examiner mode that recreates the exam. The site reads each question aloud, the student answers out loud against a countdown, and the examiner interrupts with a follow-up chosen from what the student has said so far. It can quote a wrong number back, ask for a missing unit, or catch a classic mistake such as "significant means important". Students pick a friendly, standard or strict examiner.</dd>
+        <dt class="label">Feedback</dt>
+        <dd>At the end the student sees what they said written down, a checklist of the key points they covered or missed, why each follow-up was asked, the model answer, and notes on how they sounded (pace, filler words).</dd>
+        <dt class="label">Result</dt>
+        <dd>The teacher gave very positive feedback and said he had never seen an idea like this from a student before.</dd>
+      </dl>
+      <div class="steps">
+        <figure>
+          <img src="img/exam-setup.jpg" alt="Examiner mode setup screen with strictness levels and voice options" loading="lazy">
+          <figcaption><b>1. Set up.</b> Choose how strict the examiner is and how it speaks.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/exam-followup.jpg" alt="An exam question with the examiner interrupting with a follow-up question" loading="lazy">
+          <figcaption><b>2. Answer out loud.</b> The examiner interrupts with a follow-up based on your answer.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/exam-review.jpg" alt="Review page showing the transcript, key-point checklist and model answer" loading="lazy">
+          <figcaption><b>3. Review.</b> See your answer, the key points you hit, and the model answer.</figcaption>
+        </figure>
+      </div>
+      <div class="links">
+        <a class="btn primary" href="https://andreeapana1.github.io/accounting-exam-practice/" target="_blank" rel="noopener">Try the live site</a>
+        <a class="btn" href="https://github.com/andreeapana1/accounting-exam-practice" target="_blank" rel="noopener">Source code</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="p-head">
+        <span class="p-num">Project 2</span>
+        <h3>Company Policy Assistant: an AI chatbot in Slack</h3>
+        <p class="meta">Built with Python, Gemini models, a vector index, Slack and Cloudflare Workers · Course: AI in Accounting and Business, SDU</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>Employees struggle to find answers in a large policy library (98 policies here), and a confident wrong answer can be costly.</dd>
+        <dt class="label">What I built</dt>
+        <dd>A Slack bot that answers questions such as "How many vacation days do I get?". It finds the relevant policy, answers in a thread and quotes the policy text it used, so every answer can be checked. A public website lets anyone ask their own question, with the API key kept in a Cloudflare Worker instead of the code.</dd>
+        <dt class="label">How I chose</dt>
+        <dd>I tested three approaches on the same 22 questions and measured accuracy, unsupported answers, speed and cost.</dd>
+      </dl>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Metric</th><th class="num">Rules-based search</th><th class="num">AI with all policies</th><th class="num chosen">AI with vector index (chosen)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Correct policy found</td><td class="num">68%</td><td class="num">100%</td><td class="num chosen">95%</td></tr>
+            <tr><td>Unsupported answers</td><td class="num">27%</td><td class="num">5%</td><td class="num chosen">5%</td></tr>
+            <tr><td>Declined when no policy exists</td><td class="num">50%</td><td class="num">100%</td><td class="num chosen">100%</td></tr>
+            <tr><td>Average response time</td><td class="num">&lt; 0.01 s</td><td class="num">1.12 s</td><td class="num chosen">1.34 s</td></tr>
+            <tr><td>Tokens per question</td><td class="num">0</td><td class="num">2,974</td><td class="num chosen">330</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="rows">
+        <dt class="label">Decision</dt>
+        <dd>The vector index approach is almost as accurate as sending every policy to the AI, uses about nine times fewer tokens, and keeps working as the policy library grows. That is the version the Slack bot runs.</dd>
+        <dt class="label">Controls</dt>
+        <dd>The bot declines instead of guessing when no policy covers a question, and cites its source with every answer.</dd>
+      </dl>
+      <div class="pair">
+        <figure>
+          <img src="img/policy-vacation.jpg" alt="Slack thread where the Policy Assistant answers a vacation question and cites the Vacation Policy" loading="lazy">
+          <figcaption>The bot answers in a thread and quotes the policy it used.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/policy-bereavement.jpg" alt="Slack thread where a reworded question is matched to the Bereavement Leave Policy" loading="lazy">
+          <figcaption>A reworded question is still matched to the right policy.</figcaption>
+        </figure>
+      </div>
+      <div class="links">
+        <a class="btn primary" href="https://andreeapana1.github.io/policy-assistant/" target="_blank" rel="noopener">Try the live site</a>
+        <a class="btn" href="https://github.com/andreeapana1/policy-assistant" target="_blank" rel="noopener">Source code</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="p-head">
+        <span class="p-num">Project 3</span>
+        <h3>Transfer Referral Assistant: AI support for KYC/AML checks</h3>
+        <p class="meta">Built with Claude · Based on my work as a money transfer agent · Fictional cases only</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>At a money transfer counter, the clearest warning signs come from the conversation with the customer, not from the numbers. Tellers must notice them, stay calm and professional, and write a clear referral to the compliance team.</dd>
+        <dt class="label">What I built</dt>
+        <dd>A demo that reads a teller's notes and checks them against four warning signs from my own work: the sender doesn't know the receiver, becomes uneasy when asked about the relationship, won't explain the transfer, or can't show where the money comes from. It quotes the exact words behind each sign and drafts the referral.</dd>
+        <dt class="label">Test</dt>
+        <dd>On 8 fictional cases, a keyword check found 7 of 10 warning signs and raised 2 false ones. It missed signs written in different words, and it flagged "without hesitation" as hesitation. The AI review found all 10 with no false signs and the right referral decision in every case.</dd>
+        <dt class="label">Controls</dt>
+        <dd>The tool never decides. It only prepares the referral; the teller checks the quotes and the compliance team decides on an additional interview.</dd>
+      </dl>
+      <figure>
+        <img src="img/referral-demo.jpg" alt="Teller notes with highlighted warning signs, and the keyword check compared with the AI review" loading="lazy">
+        <figcaption>The same notes checked two ways: the keyword check misses three signs that the AI review finds and quotes.</figcaption>
+      </figure>
+      <div class="links">
+        <a class="btn primary" href="demo/index.html">Open the demo</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="p-head">
+        <span class="p-num">Project 4 · <span class="status">In progress</span></span>
+        <h3>Master's thesis: AI and the performance evaluation of accountants</h3>
+        <p class="meta">Co-authored with Daniela Gelvere · University of Southern Denmark · due June 2027</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Question</dt>
+        <dd>When AI takes over routine accounting work, how should firms measure and evaluate what their accountants actually contribute?</dd>
+        <dt class="label">Approach</dt>
+        <dd>A case study built on interviews with accounting and payroll firms, analysed through management accounting and agency theory.</dd>
+        <dt class="label">Use of AI</dt>
+        <dd>AI is part of the research workflow: transcribing and analysing interviews, coding qualitative data, and writing code for data analysis where needed. AI output is checked against the original sources.</dd>
+        <dt class="label">Why it matters</dt>
+        <dd>It connects my two interests: using AI in my own work, and understanding how AI changes performance measurement and control in organisations.</dd>
+      </dl>
+    </article>
+  </section>
+
+  <section aria-labelledby="how-h" style="display:flex;flex-direction:column;gap:20px">
+    <div class="section-head">
+      <span class="label">Approach</span>
+      <h2 id="how-h">How I work with AI</h2>
+    </div>
+    <div class="principles">
+      <div><h3>Start from a real problem</h3><p>Each project began with a need I had seen myself, as a student or at work.</p></div>
+      <div><h3>Measure before choosing</h3><p>I compare approaches on accuracy, cost and speed, and pick the one the numbers support.</p></div>
+      <div><h3>Build in controls</h3><p>From my compliance work: answers should cite their source, and the system should say "I don't know" rather than guess.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="exp-h" style="display:flex;flex-direction:column;gap:20px">
+    <div class="section-head">
+      <span class="label">Background</span>
+      <h2 id="exp-h">Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="job">
+        <span class="when">Current</span>
+        <div><h3>Money Transfer Agent, Ria Money Transfer</h3><p>KYC and AML compliance checks, currency exchange, cash reconciliation and audit-trail documentation.</p></div>
+      </div>
+      <div class="job">
+        <span class="when">Jun 2023 – Feb 2025</span>
+        <div><h3>Data Consultant, Aviation Cloud (ForeFlight)</h3><p>Data consulting work in the aviation software sector.</p></div>
+      </div>
+      <div class="job">
+        <span class="when">Until Jun 2027</span>
+        <div><h3>MSc Management Accounting, University of Southern Denmark</h3><p>Strategy Management specialisation. Coursework includes AI in Accounting and Business, and Data Analytics in Accounting.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Andreea Pana · Denmark</span>
+    <span>All examples use course or made-up data. No real client or customer data is shown.</span>
+  </footer>
+</div>
+
+<script>
+  document.getElementById("copy-email").addEventListener("click", function () {
+    var btn = this, text = document.getElementById("email").textContent;
+    var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected";
+      setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+</script>
+
+</body>
+</html>
