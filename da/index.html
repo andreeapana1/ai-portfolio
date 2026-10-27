@@ -196,6 +196,27 @@ td.num { text-align: right; } th.num { text-align: right; }
 .approach-close { display: flex; gap: 14px; align-items: flex-start; border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; max-width: 70ch; }
 .approach-close p { font-size: 0.98rem; }
 
+/* Experience v2 */
+.xp-group { display: flex; flex-direction: column; gap: 14px; }
+.xp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; display: grid; grid-template-columns: 190px 1fr; gap: 8px 28px; }
+.xp-side { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.xp-side .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.xp-side .where { font-size: 0.88rem; color: var(--muted); }
+.xp-side .type { display: inline-block; align-self: flex-start; font-size: 0.76rem; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.xp-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.xp-main h3 { font-size: 1.08rem; }
+.xp-main h3 span { font-weight: 400; color: var(--muted); }
+.xp-main > p { color: var(--muted); font-size: 0.95rem; max-width: 64ch; }
+.xp-main ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; max-width: 66ch; }
+.xp-main li { font-size: 0.95rem; }
+.xp-main li::marker { color: var(--accent); }
+.xp-high { display: flex; gap: 10px; align-items: baseline; background: var(--accent-soft); border-radius: 8px; padding: 10px 14px; font-size: 0.92rem; max-width: 66ch; }
+.xp-high .label { flex: none; color: var(--accent); }
+.xp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.xp-tags span { font-size: 0.78rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); }
+.edu { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.edu .xp { grid-template-columns: 1fr; }
+
 /* Experience */
 .timeline { display: flex; flex-direction: column; }
 .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
@@ -220,6 +241,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .tabs { grid-template-columns: 1fr 1fr; }
   .tab:last-child { grid-column: 1 / -1; }
   .steps-flow { grid-template-columns: 1fr; }
+  .xp { grid-template-columns: 1fr; padding: 20px 18px; }
+  .edu { grid-template-columns: 1fr; }
   .step:not(:last-child)::after { top: auto; bottom: -13px; right: auto; left: 30px; transform: rotate(135deg); }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
@@ -574,19 +597,62 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <span class="label">Baggrund</span>
       <h2 id="exp-h">Erfaring</h2>
     </div>
-    <div class="timeline">
-      <div class="job">
-        <span class="when">Dec. 2025 – nu</span>
-        <div><h3>Retail Sales Assistant, Ria Money Transfer</h3><p>Behandling af mange daglige transaktioner i et KYC/AML-reguleret miljø. Jeg opdager advarselstegn og sender sager videre til compliance, afstemmer kassen ved hver vagts afslutning og fører revisionsspor.</p></div>
-      </div>
-      <div class="job">
-        <span class="when">Jun. 2023 – feb. 2025</span>
-        <div><h3>Data Consultant, Aviation Cloud (ForeFlight)</h3><p>Primær kontaktperson for partnere i flere lande. Jeg løste uoverensstemmelser i partnernes data, ledte onboardingen af en ny partnervirksomhed og fik en anbefaling for professionalisme og tilpasningsevne.</p></div>
-      </div>
-      <div class="job">
-        <span class="when">Til jun. 2027</span>
-        <div><h3>Cand.merc. i Management Accounting, Syddansk Universitet</h3><p>Specialisering i Strategy Management. Fag omfatter blandt andet AI in Accounting and Business og Human Resource Management.</p></div>
-      </div>
+    <div class="xp-group">
+      <article class="xp">
+        <div class="xp-side">
+          <span class="when">Dec. 2025 – nu</span>
+          <span class="where">Afdelingen i Odense</span>
+          <span class="type">Fastansat · deltid</span>
+        </div>
+        <div class="xp-main">
+          <h3>Retail Sales Assistant <span>· Ria Money Transfer</span></h3>
+          <p>Arbejde ved skranken i en reguleret finansiel virksomhed, cirka 20 timer om ugen ved siden af min kandidatuddannelse på fuld tid.</p>
+          <ul>
+            <li>Behandler og kontrollerer mange pengeoverførsler og valutavekslinger med KYC-tjek af hver kunde</li>
+            <li>Opdager advarselstegn i kundesamtaler og sender mistænkelige overførsler videre til compliance-teamet</li>
+            <li>Afstemmer kasse og transaktionsdata ved hver vagts afslutning og sporer hver afvigelse tilbage til kilden</li>
+            <li>Fører fuld dokumentation og revisionsspor og behandler kundedata fortroligt i overensstemmelse med GDPR</li>
+          </ul>
+          <div class="xp-high"><span class="label">Fremhævet</span><span>Afdelingen arbejder efter et nul-difference-krav: kassen skal stemme præcist ved hver vagts afslutning.</span></div>
+          <div class="xp-tags"><span>KYC/AML</span><span>Kasseafstemning</span><span>Revisionsspor</span><span>GDPR</span><span>Kundehåndtering</span></div>
+        </div>
+      </article>
+      <article class="xp">
+        <div class="xp-side">
+          <span class="when">Jun. 2023 – feb. 2025</span>
+          <span class="where">Odense</span>
+          <span class="type">Deltid · 10–14 t/uge</span>
+        </div>
+        <div class="xp-main">
+          <h3>Data Consultant <span>· Aviation Cloud (ForeFlight)</span></h3>
+          <p>Del af Airport Data-teamet med reference til Head of Finance and Administration, EMEA.</p>
+          <ul>
+            <li>Indsamlede og bekræftede lufthavnsoplysninger via mail og telefon med lufthavne og partnere i mange lande</li>
+            <li>Opdaterede virksomhedens lufthavnsdata og fandt og rettede uoverensstemmelser i partnernes datafeeds</li>
+            <li>Ledte hele onboardingen af en ny partnervirksomhed, inklusive dokumentation og verifikation</li>
+            <li>Arbejdede vagter på hverdage og i weekender ved siden af studiet på tværs af kulturer og organisatoriske niveauer</li>
+          </ul>
+          <div class="xp-high"><span class="label">Fremhævet</span><span>Fik en anbefaling fra virksomheden for professionalisme og tilpasningsevne.</span></div>
+          <div class="xp-tags"><span>Datakvalitet</span><span>Kontakt med samarbejdspartnere</span><span>Onboarding af partnere</span><span>Dokumentation</span><span>Internationalt arbejde</span></div>
+        </div>
+      </article>
+    </div>
+    <h3 style="font-size:1rem;margin-top:8px">Uddannelse</h3>
+    <div class="edu">
+      <article class="xp">
+        <div class="xp-side"><span class="when">Sep. 2025 – jun. 2027</span></div>
+        <div class="xp-main">
+          <h3>Cand.merc. i Management Accounting <span>· Syddansk Universitet</span></h3>
+          <p>Specialisering i Strategy Management. Fag omfatter blandt andet Advanced Management Accounting, Business Strategy (karakter 12), AI in Accounting and Business og Human Resource Management.</p>
+        </div>
+      </article>
+      <article class="xp">
+        <div class="xp-side"><span class="when">Sep. 2022 – jun. 2025</span></div>
+        <div class="xp-main">
+          <h3>BSc i Markeds- og Managementantropologi <span>· Syddansk Universitet</span></h3>
+          <p>Hvordan mennesker, organisationer og markeder fungerer, med fag inden for marketing, strategisk kommunikation og ledelse.</p>
+        </div>
+      </article>
     </div>
   </section>
 
