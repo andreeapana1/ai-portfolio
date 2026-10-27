@@ -196,6 +196,16 @@ td.num { text-align: right; } th.num { text-align: right; }
 .approach-close { display: flex; gap: 14px; align-items: flex-start; border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; max-width: 70ch; }
 .approach-close p { font-size: 0.98rem; }
 
+/* About */
+.about { display: grid; grid-template-columns: 1.6fr 1fr; gap: 28px; align-items: start; }
+.about-text { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.about-text p { max-width: 64ch; }
+.fun { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+.fun .label { color: var(--accent); }
+.fun p { font-family: var(--display); font-size: 1.15rem; line-height: 1.4; text-wrap: balance; }
+.fun a { font-size: 0.88rem; font-weight: 600; text-decoration: none; }
+.fun a:hover { text-decoration: underline; }
+
 /* Experience v2 */
 .xp-group { display: flex; flex-direction: column; gap: 14px; }
 .xp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; display: grid; grid-template-columns: 190px 1fr; gap: 8px 28px; }
@@ -243,6 +253,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps-flow { grid-template-columns: 1fr; }
   .xp { grid-template-columns: 1fr; padding: 20px 18px; }
   .edu { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; }
   .step:not(:last-child)::after { top: auto; bottom: -13px; right: auto; left: 30px; transform: rotate(135deg); }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
@@ -656,6 +667,25 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     </div>
   </section>
 
+  <section aria-labelledby="about-h" style="display:flex;flex-direction:column;gap:20px">
+    <div class="section-head">
+      <span class="label">Uden for arbejdet</span>
+      <h2 id="about-h">Om mig</h2>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <p>Jeg kom til Danmark fra Rumænien i 2020 for at studere, og med årene er Odense blevet mit hjem. At bygge et liv op i et nyt land har lært mig at omstille mig hurtigt, stille spørgsmål og blive ved, når tingene er ukendte, fra at lære dansk til at finde mig til rette i en ny arbejdskultur.</p>
+        <p>Jeg valgte regnskab, fordi jeg kan lide tal og altid har været god til dem. Der er noget tilfredsstillende ved en afstemning, der går op, eller et tal, man kan spore hele vejen tilbage til kilden. Jeg blev interesseret i AI, fordi det hurtigt bliver en del af hverdagen og arbejdslivet, og jeg vil gerne forstå, hvordan det kan gøre økonomiarbejdet bedre uden at gøre det mindre pålideligt.</p>
+        <p>Uden for arbejde og studie elsker jeg at rejse og opleve nye steder; billedet øverst på siden er fra en af mine rejser. Jeg kan også lide at lære nye ting, hvad enten det er et nyt sprog, et nyt værktøj eller en ny måde at løse et problem på. Projekterne på denne side startede netop sådan: Jeg ville lære, hvordan AI-værktøjer fungerer, så jeg byggede dem selv.</p>
+      </div>
+      <aside class="fun" aria-label="Sjov detalje">
+        <span class="label">Sjov detalje</span>
+        <p>Mit mest originale projekt startede med min værste eksamen. Jeg gik i panik til en mundtlig eksamen, så jeg byggede et værktøj, der skal sikre, at andre ikke gør det.</p>
+        <a href="#project-1" class="fun-link">Se Examiner Mode →</a>
+      </aside>
+    </div>
+  </section>
+
   <footer>
     <span>Andreea Pana · Odense</span>
     <span>Alle eksempler bygger på undervisningsmateriale eller opdigtede data. Der vises ingen rigtige kunde- eller klientdata.</span>
@@ -692,7 +722,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
-    Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"]'), function (a) {
+    Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"], a.fun-link'), function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
         var n = Number(a.getAttribute('href').slice(-1)) - 1;
