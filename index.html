@@ -80,6 +80,16 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .chip { font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); }
 
+/* Skills */
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.skill-group h3 { color: var(--accent); }
+.skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.skill-group li { display: flex; flex-direction: column; gap: 1px; }
+.skill-group li strong { font-weight: 600; font-size: 0.97rem; }
+.skill-group li span { font-size: 0.9rem; color: var(--muted); }
+.skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
+
 /* Projects */
 .section-head { display: flex; flex-direction: column; gap: 6px; }
 .projects { display: flex; flex-direction: column; gap: 40px; }
@@ -138,7 +148,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   header.intro img { width: 120px; height: 120px; }
   .summary { grid-template-columns: 1fr; gap: 28px; }
   .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
-  .steps, .pair, .principles { grid-template-columns: 1fr; }
+  .steps, .pair, .principles, .skills { grid-template-columns: 1fr; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
   .rows dd { margin-bottom: 12px; }
   article.project { padding: 22px 18px; }
@@ -173,10 +183,53 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     <div class="facts">
       <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
       <div><span class="label">Languages</span><span>Romanian, Danish, English</span></div>
-      <div><span class="label">Tools</span>
-        <div class="chips">
-          <span class="chip">Claude</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">GitHub</span><span class="chip">LLM APIs (Gemini)</span><span class="chip">Vector search</span><span class="chip">Slack bots</span><span class="chip">Excel</span><span class="chip">SQL</span><span class="chip">Regression</span>
-        </div>
+      <div><span class="label">Based in</span><span>Esbjerg area, Denmark</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="skills-h" style="display:flex;flex-direction:column;gap:20px">
+    <div class="section-head">
+      <span class="label">What I bring</span>
+      <h2 id="skills-h">Skills</h2>
+    </div>
+    <div class="skills">
+      <div class="skill-group">
+        <h3>AI and automation</h3>
+        <ul>
+          <li><strong>Building AI tools with Claude</strong><span>From idea to a working, published tool. <em>Projects 1, 2, 3</em></span></li>
+          <li><strong>Prompt design</strong><span>Clear instructions that keep AI answers grounded in the source. <em>Projects 2, 3</em></span></li>
+          <li><strong>Testing and comparing AI</strong><span>Accuracy, unsupported answers, speed and token cost. <em>Projects 2, 3</em></span></li>
+          <li><strong>Retrieval (vector search)</strong><span>Letting AI answer from a company's own documents. <em>Project 2</em></span></li>
+          <li><strong>LLM APIs and chatbots</strong><span>Gemini models, a Slack bot, secure API key handling. <em>Project 2</em></span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Data and analysis</h3>
+        <ul>
+          <li><strong>Excel and SQL</strong><span>Reconciliations, data-quality checks and queries. <em>Project 1</em></span></li>
+          <li><strong>Regression analysis</strong><span>Predicting and interpreting results for decision makers. <em>Project 1</em></span></li>
+          <li><strong>Python</strong><span>Data processing and tool building, with AI assistance. <em>Projects 1, 2</em></span></li>
+          <li><strong>Web publishing</strong><span>HTML, JavaScript, GitHub and GitHub Pages. <em>Projects 1, 2</em></span></li>
+          <li><strong>Data consulting</strong><span>Two years at Aviation Cloud (ForeFlight).</span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Accounting and control</h3>
+        <ul>
+          <li><strong>Management accounting</strong><span>Performance measurement, agency theory, cost and strategy. <em>Project 4</em></span></li>
+          <li><strong>KYC and AML compliance</strong><span>Spotting warning signs and referring cases to compliance. <em>Project 3</em></span></li>
+          <li><strong>Reconciliation and audit trails</strong><span>Daily cash reconciliation and documentation at Ria.</span></li>
+          <li><strong>Controls thinking</strong><span>Every AI answer cites its source, and people make the decisions. <em>Projects 2, 3</em></span></li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Working with people</h3>
+        <ul>
+          <li><strong>Languages</strong><span>Romanian, Danish and English.</span></li>
+          <li><strong>Calm customer handling</strong><span>Professional in difficult conversations at the counter.</span></li>
+          <li><strong>Explaining technical results</strong><span>Turning test results into clear recommendations.</span></li>
+          <li><strong>Teamwork</strong><span>Co-writing my master's thesis. <em>Project 4</em></span></li>
+        </ul>
       </div>
     </div>
   </section>
