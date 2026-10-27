@@ -71,6 +71,12 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .cv-btn { text-decoration: none; font-weight: 500; font-size: 0.88rem; padding: 5px 14px; border-radius: 6px; background: var(--accent); color: var(--surface); }
 .cv-btn:hover { opacity: 0.88; }
 
+.label-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; font-family: var(--mono); font-size: 0.74rem; }
+.lang a { padding: 3px 11px; text-decoration: none; color: var(--muted); }
+.lang a[aria-current="page"] { background: var(--accent); color: var(--surface); }
+.lang a:not([aria-current]):hover { color: var(--accent); }
+
 /* Summary */
 .summary { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
 .summary > * { min-width: 0; }
@@ -202,7 +208,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <header class="intro">
     <img src="img/andreea.jpg" alt="Portrait of Andreea Pana">
     <div class="intro-text">
-      <span class="label">AI portfolio</span>
+      <div class="label-row"><span class="label">AI portfolio</span><nav class="lang" aria-label="Language"><a aria-current="page">EN</a><a href="da/index.html" lang="da">DA</a></nav></div>
       <h1>Andreea Pana</h1>
       <p class="role">Master's student in Management Accounting at the University of Southern Denmark. I combine finance, control and AI to create tools that make accounting work faster and more reliable.</p>
       <div class="contact">
@@ -493,7 +499,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       </div>
       <div class="job">
         <span class="when">Until Jun 2027</span>
-        <div><h3>MSc Management Accounting, University of Southern Denmark</h3><p>Strategy Management specialisation. Coursework includes AI in Accounting and Business, and Data Analytics in Accounting.</p></div>
+        <div><h3>MSc Management Accounting, University of Southern Denmark</h3><p>Strategy Management specialisation. Coursework includes AI in Accounting and Business, and Human Resource Management.</p></div>
       </div>
     </div>
   </section>
