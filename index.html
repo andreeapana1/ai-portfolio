@@ -90,9 +90,26 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li span { font-size: 0.9rem; color: var(--muted); }
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
+/* Project tabs */
+.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.tab {
+  font: inherit; text-align: left; cursor: pointer; color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  transition: border-color 0.15s, background 0.15s;
+}
+.tab:hover { border-color: var(--accent); }
+.tab .t-num { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.tab .t-name { font-weight: 600; font-size: 0.98rem; line-height: 1.3; }
+.tab .t-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.35; }
+.tab[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 -3px 0 var(--accent); }
+.tab[aria-selected="true"] .t-num { color: var(--accent); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tab-hint { font-size: 0.85rem; color: var(--muted); }
+
 /* Projects */
 .section-head { display: flex; flex-direction: column; gap: 6px; }
-.projects { display: flex; flex-direction: column; gap: 40px; }
+.projects { display: flex; flex-direction: column; gap: 16px; }
 article.project {
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
   padding: 32px; display: flex; flex-direction: column; gap: 22px;
@@ -149,6 +166,9 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .summary { grid-template-columns: 1fr; gap: 28px; }
   .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
   .steps, .pair, .principles, .skills { grid-template-columns: 1fr; }
+  .tabs { grid-template-columns: 1fr 1fr; }
+  .tab { padding: 12px; }
+  .tab .t-sub { display: none; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
   .rows dd { margin-bottom: 12px; }
   article.project { padding: 22px 18px; }
@@ -239,8 +259,15 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <span class="label">Selected work</span>
       <h2 id="projects-h">Projects</h2>
     </div>
+    <p class="tab-hint">Click a project to see the details.</p>
+    <div class="tabs" role="tablist" aria-label="Projects">
+      <button class="tab" role="tab" id="tab-1" aria-controls="project-1" aria-selected="true" type="button"><span class="t-num">Project 1</span><span class="t-name">Examiner Mode</span><span class="t-sub">Oral exam simulator</span></button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="project-2" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 2</span><span class="t-name">Policy Assistant</span><span class="t-sub">AI chatbot in Slack</span></button>
+      <button class="tab" role="tab" id="tab-3" aria-controls="project-3" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 3</span><span class="t-name">Referral Assistant</span><span class="t-sub">AI for KYC/AML checks</span></button>
+      <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 4</span><span class="t-name">Master's thesis</span><span class="t-sub">AI and accountant performance</span></button>
+    </div>
 
-    <article class="project">
+    <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
       <div class="p-head">
         <span class="p-num">Project 1</span>
         <h3>Examiner Mode: an oral exam simulator</h3>
@@ -276,7 +303,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       </div>
     </article>
 
-    <article class="project">
+    <article class="project" role="tabpanel" id="project-2" aria-labelledby="tab-2" tabindex="0">
       <div class="p-head">
         <span class="p-num">Project 2</span>
         <h3>Company Policy Assistant: an AI chatbot in Slack</h3>
@@ -326,7 +353,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       </div>
     </article>
 
-    <article class="project">
+    <article class="project" role="tabpanel" id="project-3" aria-labelledby="tab-3" tabindex="0">
       <div class="p-head">
         <span class="p-num">Project 3</span>
         <h3>Transfer Referral Assistant: AI support for KYC/AML checks</h3>
@@ -351,7 +378,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       </div>
     </article>
 
-    <article class="project">
+    <article class="project" role="tabpanel" id="project-4" aria-labelledby="tab-4" tabindex="0">
       <div class="p-head">
         <span class="p-num">Project 4 · <span class="status">In progress</span></span>
         <h3>Master's thesis: AI and the performance evaluation of accountants</h3>
@@ -409,6 +436,37 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   </footer>
 </div>
 
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    function show(n, focus) {
+      tabs.forEach(function (t, i) {
+        var on = i === n;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tabs[n].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () {
+        show(i);
+        try { history.replaceState(null, '', '#project-' + (i + 1)); } catch (e) {}
+      });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = null;
+        if (k === 'ArrowRight' || k === 'ArrowDown') n = (i + 1) % tabs.length;
+        if (k === 'ArrowLeft' || k === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
+        if (k === 'Home') n = 0;
+        if (k === 'End') n = tabs.length - 1;
+        if (n !== null) { e.preventDefault(); show(n, true); }
+      });
+    });
+    function fromHash() { var m = /^#project-([1-4])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  })();
+</script>
 <script>
   document.getElementById("copy-email").addEventListener("click", function () {
     var btn = this, text = document.getElementById("email").textContent;
