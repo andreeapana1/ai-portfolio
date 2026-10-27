@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -201,6 +201,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
+  .tab:last-child { grid-column: 1 / -1; }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
@@ -233,7 +234,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Summary">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">I combine a management accounting education with hands-on experience in compliance and data work. My AI projects start from a real problem, end in something people can use, and include checks on whether the AI is right.</p>
-      <p>The four projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, and my master's thesis on how AI changes the way accountants' performance is evaluated.</p>
+      <p>The five projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, an internal audit tool for 490,000 card transactions, and my master's thesis on how AI changes the way accountants' performance is evaluated.</p>
     </div>
     <div class="facts">
       <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
@@ -305,13 +306,13 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Prompt design</strong><span>Clear instructions that keep AI answers grounded in the source. <em>Projects 2, 3</em></span></li>
           <li><strong>Testing and comparing AI</strong><span>Accuracy, unsupported answers, speed and token cost. <em>Projects 2, 3</em></span></li>
           <li><strong>Retrieval (vector search)</strong><span>Letting AI answer from a company's own documents. <em>Project 2</em></span></li>
-          <li><strong>LLM APIs and chatbots</strong><span>Gemini models, a Slack bot, secure API key handling. <em>Project 2</em></span></li>
+          <li><strong>LLM APIs and chatbots</strong><span>Gemini models, a Slack bot, secure API key handling. <em>Projects 2, 4</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
         <h3>Data and analysis</h3>
         <ul>
-          <li><strong>Excel and SQL</strong><span>Reconciliations, data-quality checks and queries. <em>Project 1</em></span></li>
+          <li><strong>Excel and SQL</strong><span>Reconciliations, data-quality checks and queries. <em>Projects 1, 4</em></span></li>
           <li><strong>Regression analysis</strong><span>Predicting and interpreting results for decision makers. <em>Project 1</em></span></li>
           <li><strong>Python</strong><span>Data processing and tool building, with AI assistance. <em>Projects 1, 2</em></span></li>
           <li><strong>Web publishing</strong><span>HTML, JavaScript, GitHub and GitHub Pages. <em>Projects 1, 2</em></span></li>
@@ -321,10 +322,10 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <div class="skill-group">
         <h3>Accounting and control</h3>
         <ul>
-          <li><strong>Management accounting</strong><span>Performance measurement, agency theory, cost and strategy. <em>Project 4</em></span></li>
+          <li><strong>Management accounting</strong><span>Performance measurement, agency theory, cost and strategy. <em>Project 5</em></span></li>
           <li><strong>KYC and AML compliance</strong><span>Spotting warning signs and referring cases to compliance. <em>Project 3</em></span></li>
           <li><strong>Reconciliation and audit trails</strong><span>Daily cash reconciliation and documentation at Ria.</span></li>
-          <li><strong>Controls thinking</strong><span>Every AI answer cites its source, and people make the decisions. <em>Projects 2, 3</em></span></li>
+          <li><strong>Controls thinking</strong><span>Every AI answer cites its source, and people make the decisions. <em>Projects 2, 3, 4</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
@@ -333,7 +334,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Languages</strong><span>Romanian (native), English (fluent), Danish (intermediate).</span></li>
           <li><strong>Calm customer handling</strong><span>Professional in difficult conversations at the counter.</span></li>
           <li><strong>Explaining technical results</strong><span>Turning test results into clear recommendations.</span></li>
-          <li><strong>Teamwork</strong><span>Co-writing my master's thesis. <em>Project 4</em></span></li>
+          <li><strong>Teamwork</strong><span>Co-writing my master's thesis. <em>Project 5</em></span></li>
         </ul>
       </div>
     </div>
@@ -349,7 +350,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-1" aria-controls="project-1" aria-selected="true" type="button"><span class="t-num">Project 1</span><span class="t-name">Examiner Mode</span><span class="t-sub">Oral exam simulator</span></button>
       <button class="tab" role="tab" id="tab-2" aria-controls="project-2" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 2</span><span class="t-name">Policy Assistant</span><span class="t-sub">AI chatbot in Slack</span></button>
       <button class="tab" role="tab" id="tab-3" aria-controls="project-3" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 3</span><span class="t-name">Referral Assistant</span><span class="t-sub">AI for KYC/AML checks</span></button>
-      <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 4</span><span class="t-name">Master's thesis</span><span class="t-sub">AI and accountant performance</span></button>
+      <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI for internal audit</span></button>
+      <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 5</span><span class="t-name">Master's thesis</span><span class="t-sub">AI and accountant performance</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -465,7 +467,36 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
     <article class="project" role="tabpanel" id="project-4" aria-labelledby="tab-4" tabindex="0">
       <div class="p-head">
-        <span class="p-num">Project 4 · <span class="status">In progress</span></span>
+        <span class="p-num">Project 4</span>
+        <h3>P-card Audit Tool: AI-assisted internal audit of purchasing cards</h3>
+        <p class="meta">Built with Python, Streamlit, SQLite and the Gemini API · Case: Oklahoma State University purchasing cards, 2010–2014 (anonymised data)</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>Employees with purchasing cards must follow a spending policy, and internal audit has to check that they do. With almost 490,000 transactions over five years, checking by hand is impossible, and auditors without SQL skills can't query the database themselves.</dd>
+        <dt class="label">What I built</dt>
+        <dd>A web app with two tabs. In <strong>Ask a Question</strong>, an auditor types a question in plain English; AI writes a database query, runs it and answers from the actual results, showing the query so it can be checked. The <strong>Prohibited Purchases Dashboard</strong> searches transactions by year and keyword across 14 categories the card policy prohibits, such as alcohol, cash advances and gift cards.</dd>
+        <dt class="label">Example</dt>
+        <dd>A vendor search for "liquor" returns 10 transactions worth $9,179. Nine of them, worth $9,148, were made by the same cardholder and labelled "general purchase". That is the kind of pattern an auditor would follow up with supporting documents.</dd>
+        <dt class="label">Controls</dt>
+        <dd>Two safety layers make sure the AI can never change the data: only a single read-only query is allowed through, and the database is opened in read-only mode. Matches are shown as potential exceptions, not proof, and the API key is kept out of the code.</dd>
+      </dl>
+      <figure>
+        <img src="img/pcard-dashboard.jpg" alt="Prohibited Purchases Dashboard showing a vendor search for liquor with 10 matching transactions" loading="lazy">
+        <figcaption>A vendor search for "liquor" across 2010–2014: nine of the ten matches come from one cardholder.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/pcard-categories.jpg" alt="Table of prohibited purchase categories with suggested search keywords" loading="lazy">
+        <figcaption>The prohibited categories from the card policy, each with suggested keywords to search for.</figcaption>
+      </figure>
+      <div class="links">
+        <a class="btn" href="https://github.com/andreeapana1/PCards-assignment" target="_blank" rel="noopener">Source code</a>
+      </div>
+    </article>
+
+    <article class="project" role="tabpanel" id="project-5" aria-labelledby="tab-5" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Project 5 · <span class="status">In progress</span></span>
         <h3>Master's thesis: AI and the performance evaluation of accountants</h3>
         <p class="meta">Co-authored with Daniela Gelvere · University of Southern Denmark · due June 2027</p>
       </div>
@@ -547,7 +578,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-4])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
   })();

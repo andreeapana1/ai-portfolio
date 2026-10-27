@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -201,6 +201,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
+  .tab:last-child { grid-column: 1 / -1; }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
@@ -233,7 +234,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Resumé">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">Jeg kombinerer en uddannelse i management accounting med praktisk erfaring inden for compliance og dataarbejde. Mine AI-projekter tager udgangspunkt i et reelt problem, ender i noget, folk kan bruge, og indeholder kontrol af, om AI'en har ret.</p>
-      <p>De fire projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, og mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på.</p>
+      <p>De fem projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, et værktøj til intern revision af 490.000 korttransaktioner, og mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på.</p>
     </div>
     <div class="facts">
       <div><span class="label">Uddannelse</span><span>Cand.merc. i Management Accounting (Strategy Management), SDU · færdig juni 2027</span></div>
@@ -305,13 +306,13 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Prompt-design</strong><span>Klare instruktioner, der holder AI-svar tæt på kilden. <em>Projekt 2, 3</em></span></li>
           <li><strong>Test og sammenligning af AI</strong><span>Præcision, svar uden belæg, hastighed og token-omkostninger. <em>Projekt 2, 3</em></span></li>
           <li><strong>Vektorsøgning</strong><span>AI, der svarer ud fra virksomhedens egne dokumenter. <em>Projekt 2</em></span></li>
-          <li><strong>LLM-API'er og chatbots</strong><span>Gemini-modeller, en Slack-bot og sikker håndtering af API-nøgler. <em>Projekt 2</em></span></li>
+          <li><strong>LLM-API'er og chatbots</strong><span>Gemini-modeller, en Slack-bot og sikker håndtering af API-nøgler. <em>Projekt 2, 4</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
         <h3>Data og analyse</h3>
         <ul>
-          <li><strong>Excel og SQL</strong><span>Afstemninger, datakvalitetstjek og forespørgsler. <em>Projekt 1</em></span></li>
+          <li><strong>Excel og SQL</strong><span>Afstemninger, datakvalitetstjek og forespørgsler. <em>Projekt 1, 4</em></span></li>
           <li><strong>Regressionsanalyse</strong><span>Forudsigelser og fortolkning af resultater for beslutningstagere. <em>Projekt 1</em></span></li>
           <li><strong>Python</strong><span>Databehandling og udvikling af værktøjer med AI-hjælp. <em>Projekt 1, 2</em></span></li>
           <li><strong>Webudgivelse</strong><span>HTML, JavaScript, GitHub og GitHub Pages. <em>Projekt 1, 2</em></span></li>
@@ -321,10 +322,10 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <div class="skill-group">
         <h3>Økonomistyring og kontrol</h3>
         <ul>
-          <li><strong>Management accounting</strong><span>Performancemåling, agentteori, omkostninger og strategi. <em>Projekt 4</em></span></li>
+          <li><strong>Management accounting</strong><span>Performancemåling, agentteori, omkostninger og strategi. <em>Projekt 5</em></span></li>
           <li><strong>KYC- og AML-compliance</strong><span>Opdage advarselstegn og sende sager videre til compliance. <em>Projekt 3</em></span></li>
           <li><strong>Afstemning og revisionsspor</strong><span>Daglig kasseafstemning og dokumentation hos Ria.</span></li>
-          <li><strong>Kontroltankegang</strong><span>Hvert AI-svar angiver sin kilde, og mennesker træffer beslutningerne. <em>Projekt 2, 3</em></span></li>
+          <li><strong>Kontroltankegang</strong><span>Hvert AI-svar angiver sin kilde, og mennesker træffer beslutningerne. <em>Projekt 2, 3, 4</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
@@ -333,7 +334,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Sprog</strong><span>Rumænsk (modersmål), engelsk (flydende), dansk (mellemniveau).</span></li>
           <li><strong>Rolig kundehåndtering</strong><span>Professionel i svære samtaler ved skranken.</span></li>
           <li><strong>Formidling af tekniske resultater</strong><span>Gør testresultater til klare anbefalinger.</span></li>
-          <li><strong>Teamwork</strong><span>Skriver mit speciale sammen med en medstuderende. <em>Projekt 4</em></span></li>
+          <li><strong>Teamwork</strong><span>Skriver mit speciale sammen med en medstuderende. <em>Projekt 5</em></span></li>
         </ul>
       </div>
     </div>
@@ -349,7 +350,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-1" aria-controls="project-1" aria-selected="true" type="button"><span class="t-num">Projekt 1</span><span class="t-name">Examiner Mode</span><span class="t-sub">Simulator til mundtlig eksamen</span></button>
       <button class="tab" role="tab" id="tab-2" aria-controls="project-2" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 2</span><span class="t-name">Policy Assistant</span><span class="t-sub">AI-chatbot i Slack</span></button>
       <button class="tab" role="tab" id="tab-3" aria-controls="project-3" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 3</span><span class="t-name">Referral Assistant</span><span class="t-sub">AI til KYC/AML-tjek</span></button>
-      <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 4</span><span class="t-name">Speciale</span><span class="t-sub">AI og vurdering af præstationer</span></button>
+      <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI til intern revision</span></button>
+      <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 5</span><span class="t-name">Speciale</span><span class="t-sub">AI og vurdering af præstationer</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -465,7 +467,36 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
     <article class="project" role="tabpanel" id="project-4" aria-labelledby="tab-4" tabindex="0">
       <div class="p-head">
-        <span class="p-num">Projekt 4 · <span class="status">I gang</span></span>
+        <span class="p-num">Projekt 4</span>
+        <h3>P-card Audit Tool: AI-støttet intern revision af betalingskort</h3>
+        <p class="meta">Udviklet med Python, Streamlit, SQLite og Gemini-API'et · Case: Oklahoma State Universitys betalingskort, 2010–2014 (anonymiserede data)</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>Medarbejdere med firmabetalingskort skal følge en indkøbspolitik, og intern revision skal kontrollere, at de gør det. Med næsten 490.000 transaktioner over fem år er manuel kontrol umulig, og revisorer uden SQL-kendskab kan ikke selv søge i databasen.</dd>
+        <dt class="label">Det byggede jeg</dt>
+        <dd>En webapp med to faner. I <strong>Ask a Question</strong> skriver revisoren et spørgsmål på almindeligt sprog; AI skriver en databaseforespørgsel, kører den og svarer ud fra de faktiske resultater og viser forespørgslen, så den kan kontrolleres. <strong>Prohibited Purchases Dashboard</strong> søger i transaktioner efter år og søgeord på tværs af 14 kategorier, som kortpolitikken forbyder, fx alkohol, kontanthævninger og gavekort.</dd>
+        <dt class="label">Eksempel</dt>
+        <dd>En søgning på leverandører med "liquor" giver 10 transaktioner for i alt 9.179 dollar. Ni af dem, for 9.148 dollar, er foretaget af den samme kortholder og angivet som "general purchase". Det er netop den slags mønster, en revisor ville følge op på med bilag.</dd>
+        <dt class="label">Kontrol</dt>
+        <dd>To sikkerhedslag sikrer, at AI'en aldrig kan ændre data: kun en enkelt læseforespørgsel slipper igennem, og databasen åbnes i skrivebeskyttet tilstand. Fund vises som mulige afvigelser, ikke som bevis, og API-nøglen holdes uden for koden.</dd>
+      </dl>
+      <figure>
+        <img src="../img/pcard-dashboard.jpg" alt="Prohibited Purchases Dashboard med en leverandørsøgning på liquor og 10 fund" loading="lazy">
+        <figcaption>En leverandørsøgning på "liquor" i 2010–2014: ni af de ti fund kommer fra én kortholder.</figcaption>
+      </figure>
+      <figure>
+        <img src="../img/pcard-categories.jpg" alt="Tabel over forbudte indkøbskategorier med foreslåede søgeord" loading="lazy">
+        <figcaption>De forbudte kategorier fra kortpolitikken, hver med foreslåede søgeord.</figcaption>
+      </figure>
+      <div class="links">
+        <a class="btn" href="https://github.com/andreeapana1/PCards-assignment" target="_blank" rel="noopener">Kildekode</a>
+      </div>
+    </article>
+
+    <article class="project" role="tabpanel" id="project-5" aria-labelledby="tab-5" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Projekt 5 · <span class="status">I gang</span></span>
         <h3>Speciale: AI og vurdering af revisorers og bogholderes præstationer</h3>
         <p class="meta">Skrives sammen med Daniela Gelvere · Syddansk Universitet · afleveres juni 2027</p>
       </div>
@@ -548,7 +579,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-4])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
   })();
