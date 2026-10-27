@@ -839,6 +839,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
 
 <script>
 (function () {
+  var ENABLED = false; // switched on once the Cloudflare Worker is live
   var WORKER_URL = "https://portfolio-assistant-api.andreeapana.workers.dev";
   var da = (document.documentElement.lang || "").indexOf("da") === 0;
   var T = da ? {
@@ -859,6 +860,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   var SECTION_TARGET = { looking: "looking-h", skills: "skills-h", approach: "how-h", experience: "exp-h", about: "about-h" };
 
   var fab = document.getElementById("ask-fab"), panel = document.getElementById("ask-panel");
+  if (!ENABLED) { fab.hidden = true; return; }
   var log = document.getElementById("ask-log"), form = document.getElementById("ask-form");
   var input = document.getElementById("ask-input"), send = document.getElementById("ask-send");
   var chips = document.getElementById("ask-chips");
