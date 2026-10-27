@@ -80,6 +80,20 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .chip { font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); }
 
+/* Looking for */
+.looking { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px 28px; display: flex; flex-direction: column; gap: 20px; }
+.looking-top { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+.avail { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.92rem; color: var(--good); background: color-mix(in srgb, var(--good) 12%, transparent); padding: 5px 12px; border-radius: 999px; }
+.avail::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+.role-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.role-groups > div { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.role-groups ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.role-groups li { font-size: 0.95rem; padding-left: 14px; position: relative; }
+.role-groups li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 1.5px; background: var(--accent); }
+.looking-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; }
+.looking-meta > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.looking-meta span:last-child { font-size: 0.95rem; }
+
 /* Skills */
 .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
@@ -165,7 +179,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   header.intro img { width: 120px; height: 120px; }
   .summary { grid-template-columns: 1fr; gap: 28px; }
   .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
-  .steps, .pair, .principles, .skills { grid-template-columns: 1fr; }
+  .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
+  .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
@@ -204,6 +219,56 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
       <div><span class="label">Languages</span><span>Romanian, Danish, English</span></div>
       <div><span class="label">Based in</span><span>Odense, Denmark</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="looking-h" style="display:flex;flex-direction:column;gap:20px">
+    <div class="section-head">
+      <span class="label">Open to work</span>
+      <h2 id="looking-h">What I'm looking for</h2>
+    </div>
+    <div class="looking">
+      <div class="looking-top">
+        <span class="avail">Available to start right away</span>
+        <span class="muted" style="font-size:0.92rem">Full-time, part-time and student positions</span>
+      </div>
+      <div class="role-groups">
+        <div>
+          <span class="label">Finance and controlling</span>
+          <ul>
+            <li>Management Accountant</li>
+            <li>Business or Financial Controller</li>
+            <li>Financial Analyst or FP&amp;A</li>
+            <li>Cost and Performance Analyst</li>
+            <li>Finance Graduate Programme</li>
+          </ul>
+        </div>
+        <div>
+          <span class="label">Controls and compliance</span>
+          <ul>
+            <li>Internal Controls Analyst</li>
+            <li>Internal Audit Associate</li>
+            <li>Compliance or KYC/AML Analyst</li>
+            <li>Risk Analyst</li>
+            <li>ESG and Sustainability Reporting</li>
+          </ul>
+        </div>
+        <div>
+          <span class="label">AI, data and people</span>
+          <ul>
+            <li>AI in Finance or Finance Automation</li>
+            <li>Finance Transformation Analyst</li>
+            <li>Data or Business Analyst</li>
+            <li>HR and People Analytics</li>
+            <li>Student Assistant in any of these areas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="looking-meta">
+        <div><span class="label">Locations</span><span>Odense, Copenhagen, Aarhus, Vejle, Esbjerg</span></div>
+        <div><span class="label">Work setup</span><span>On-site, hybrid or remote</span></div>
+        <div><span class="label">Contact</span><span>pana.andreea15@yahoo.com</span></div>
+      </div>
     </div>
   </section>
 
