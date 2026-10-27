@@ -179,6 +179,23 @@ td.num { text-align: right; } th.num { text-align: right; }
 
 .status { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
 
+/* Approach */
+.approach { display: flex; flex-direction: column; gap: 24px; }
+.approach-lead { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.35; max-width: 34ch; text-wrap: balance; }
+.approach-lead em { font-style: normal; color: var(--accent); }
+.steps-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+.step { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.step:not(:last-child)::after { content: ""; position: absolute; top: 34px; right: -13px; width: 10px; height: 10px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transform: rotate(45deg); z-index: 1; }
+.step-num { font-family: var(--mono); font-size: 0.78rem; color: var(--surface); background: var(--accent); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 500; }
+.step h3 { font-size: 1.05rem; }
+.step > p { font-size: 0.92rem; color: var(--muted); }
+.step .example { margin-top: auto; background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.step .example p { font-size: 0.88rem; line-height: 1.45; }
+.step .example a { font-size: 0.84rem; font-weight: 600; text-decoration: none; }
+.step .example a:hover { text-decoration: underline; }
+.approach-close { display: flex; gap: 14px; align-items: flex-start; border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; max-width: 70ch; }
+.approach-close p { font-size: 0.98rem; }
+
 /* Experience */
 .timeline { display: flex; flex-direction: column; }
 .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
@@ -202,6 +219,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
   .tab:last-child { grid-column: 1 / -1; }
+  .steps-flow { grid-template-columns: 1fr; }
+  .step:not(:last-child)::after { top: auto; bottom: -13px; right: auto; left: 30px; transform: rotate(135deg); }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
@@ -513,15 +532,40 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     </article>
   </section>
 
-  <section aria-labelledby="how-h" style="display:flex;flex-direction:column;gap:20px">
+  <section aria-labelledby="how-h" class="approach">
     <div class="section-head">
       <span class="label">Approach</span>
       <h2 id="how-h">How I work with AI</h2>
     </div>
-    <div class="principles">
-      <div><h3>Start from a real problem</h3><p>Each project began with a need I had seen myself, as a student or at work.</p></div>
-      <div><h3>Measure before choosing</h3><p>I compare approaches on accuracy, cost and speed, and pick the one the numbers support.</p></div>
-      <div><h3>Build in controls</h3><p>From my compliance work: answers should cite their source, and the system should say "I don't know" rather than guess.</p></div>
+    <p class="approach-lead">In finance, AI is only useful if you can <em>trust the answer</em>. That's why every project I build follows the same four steps.</p>
+    <ol class="steps-flow">
+      <li class="step">
+        <span class="step-num">1</span>
+        <h3>Start from a real problem</h3>
+        <p>I build for a situation I have been in myself, not for the technology.</p>
+        <div class="example"><span class="label">In practice</span><p>I panicked at my own oral exam because I didn't know what to expect. That became Examiner Mode.</p><a href="#project-1">See Project 1 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <h3>Compare before choosing</h3>
+        <p>I try more than one approach on the same test and let the numbers decide.</p>
+        <div class="example"><span class="label">In practice</span><p>Three approaches, 22 questions: the vector index found the right policy 95% of the time with nine times fewer tokens.</p><a href="#project-2">See Project 2 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <h3>Keep people in charge</h3>
+        <p>The AI prepares the work. A person checks it and makes the decision.</p>
+        <div class="example"><span class="label">In practice</span><p>The Referral Assistant drafts the referral, but the teller checks the quotes and compliance decides.</p><a href="#project-3">See Project 3 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">4</span>
+        <h3>Build in controls</h3>
+        <p>Every answer shows its source, and the AI can never change the underlying data.</p>
+        <div class="example"><span class="label">In practice</span><p>The P-card tool only runs read-only queries and opens the database in read-only mode.</p><a href="#project-4">See Project 4 →</a></div>
+      </li>
+    </ol>
+    <div class="approach-close">
+      <p><strong>And when the AI doesn't know, it should say so.</strong> My Policy Assistant declined every question that no policy covered, instead of inventing an answer. In compliance work, "I don't know" is better than a confident guess.</p>
     </div>
   </section>
 
@@ -581,6 +625,15 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
+    Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"]'), function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var n = Number(a.getAttribute('href').slice(-1)) - 1;
+        show(n);
+        try { history.replaceState(null, '', a.getAttribute('href')); } catch (err) {}
+        document.querySelector('.projects').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
   })();
 </script>
 <script>

@@ -179,6 +179,23 @@ td.num { text-align: right; } th.num { text-align: right; }
 
 .status { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
 
+/* Approach */
+.approach { display: flex; flex-direction: column; gap: 24px; }
+.approach-lead { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.35; max-width: 34ch; text-wrap: balance; }
+.approach-lead em { font-style: normal; color: var(--accent); }
+.steps-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+.step { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.step:not(:last-child)::after { content: ""; position: absolute; top: 34px; right: -13px; width: 10px; height: 10px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); transform: rotate(45deg); z-index: 1; }
+.step-num { font-family: var(--mono); font-size: 0.78rem; color: var(--surface); background: var(--accent); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 500; }
+.step h3 { font-size: 1.05rem; }
+.step > p { font-size: 0.92rem; color: var(--muted); }
+.step .example { margin-top: auto; background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.step .example p { font-size: 0.88rem; line-height: 1.45; }
+.step .example a { font-size: 0.84rem; font-weight: 600; text-decoration: none; }
+.step .example a:hover { text-decoration: underline; }
+.approach-close { display: flex; gap: 14px; align-items: flex-start; border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; max-width: 70ch; }
+.approach-close p { font-size: 0.98rem; }
+
 /* Experience */
 .timeline { display: flex; flex-direction: column; }
 .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
@@ -202,6 +219,8 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
   .tab:last-child { grid-column: 1 / -1; }
+  .steps-flow { grid-template-columns: 1fr; }
+  .step:not(:last-child)::after { top: auto; bottom: -13px; right: auto; left: 30px; transform: rotate(135deg); }
   .tab { padding: 12px; }
   .tab .t-sub { display: none; }
   .rows { grid-template-columns: 1fr; gap: 4px; }
@@ -513,15 +532,40 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     </article>
   </section>
 
-  <section aria-labelledby="how-h" style="display:flex;flex-direction:column;gap:20px">
+  <section aria-labelledby="how-h" class="approach">
     <div class="section-head">
       <span class="label">Tilgang</span>
       <h2 id="how-h">Sådan arbejder jeg med AI</h2>
     </div>
-    <div class="principles">
-      <div><h3>Start med et reelt problem</h3><p>Hvert projekt begyndte med et behov, jeg selv havde set, som studerende eller på arbejdet.</p></div>
-      <div><h3>Mål, før du vælger</h3><p>Jeg sammenligner løsninger på præcision, omkostninger og hastighed og vælger den, tallene taler for.</p></div>
-      <div><h3>Indbyg kontrol</h3><p>Fra mit compliance-arbejde: svar skal angive deres kilde, og systemet skal sige "det ved jeg ikke" i stedet for at gætte.</p></div>
+    <p class="approach-lead">Inden for økonomi er AI kun nyttig, hvis man kan <em>stole på svaret</em>. Derfor følger alle mine projekter de samme fire trin.</p>
+    <ol class="steps-flow">
+      <li class="step">
+        <span class="step-num">1</span>
+        <h3>Start med et reelt problem</h3>
+        <p>Jeg bygger til en situation, jeg selv har stået i, ikke for teknologiens skyld.</p>
+        <div class="example"><span class="label">I praksis</span><p>Jeg gik i panik til min egen mundtlige eksamen, fordi jeg ikke vidste, hvad jeg kunne forvente. Det blev til Examiner Mode.</p><a href="#project-1">Se projekt 1 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <h3>Sammenlign, før du vælger</h3>
+        <p>Jeg afprøver flere løsninger på den samme test og lader tallene bestemme.</p>
+        <div class="example"><span class="label">I praksis</span><p>Tre løsninger, 22 spørgsmål: vektorindekset fandt den rigtige politik i 95% af tilfældene med ni gange færre tokens.</p><a href="#project-2">Se projekt 2 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <h3>Lad mennesker bestemme</h3>
+        <p>AI'en forbereder arbejdet. Et menneske kontrollerer det og træffer beslutningen.</p>
+        <div class="example"><span class="label">I praksis</span><p>Referral Assistant laver udkastet til indberetningen, men medarbejderen tjekker citaterne, og compliance beslutter.</p><a href="#project-3">Se projekt 3 →</a></div>
+      </li>
+      <li class="step">
+        <span class="step-num">4</span>
+        <h3>Indbyg kontrol</h3>
+        <p>Hvert svar viser sin kilde, og AI'en kan aldrig ændre de underliggende data.</p>
+        <div class="example"><span class="label">I praksis</span><p>P-card-værktøjet kører kun læseforespørgsler og åbner databasen i skrivebeskyttet tilstand.</p><a href="#project-4">Se projekt 4 →</a></div>
+      </li>
+    </ol>
+    <div class="approach-close">
+      <p><strong>Og når AI'en ikke ved det, skal den sige det.</strong> Min Policy Assistant afviste alle spørgsmål, som ingen politik dækkede, i stedet for at finde på et svar. I compliance-arbejde er "det ved jeg ikke" bedre end et selvsikkert gæt.</p>
     </div>
   </section>
 
@@ -582,6 +626,15 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
+    Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"]'), function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var n = Number(a.getAttribute('href').slice(-1)) - 1;
+        show(n);
+        try { history.replaceState(null, '', a.getAttribute('href')); } catch (err) {}
+        document.querySelector('.projects').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
   })();
 </script>
 <script>
