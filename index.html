@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -272,6 +272,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
+  .tab:last-child { grid-column: 1 / -1; }
   .steps-flow { grid-template-columns: 1fr; }
   .xp { grid-template-columns: 1fr; padding: 20px 18px; }
   .edu { grid-template-columns: 1fr; }
@@ -309,7 +310,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Summary">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">I combine a management accounting education with hands-on experience in compliance and data work. My AI projects start from a real problem, end in something people can use, and include checks on whether the AI is right.</p>
-      <p>The six projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, an internal audit tool for 490,000 card transactions, my master's thesis on how AI changes the way accountants' performance is evaluated, and a customer support assistant where a person approves every answer and each correction improves the knowledge base.</p>
+      <p>The seven projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, an internal audit tool for 490,000 card transactions, my master's thesis on how AI changes the way accountants' performance is evaluated, a customer support assistant where a person approves every answer, and a customer health dashboard where I tested an AI review against a rules-based score.</p>
     </div>
     <div class="facts">
       <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
@@ -409,6 +410,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Languages</strong><span>English (fluent), Danish (intermediate), Romanian (native).</span></li>
           <li><strong>Calm customer handling</strong><span>Professional in difficult conversations at the counter.</span></li>
           <li><strong>Customer support workflows</strong><span>Reviewing answers before they reach customers, and turning corrections into better shared knowledge. <em>Project 6</em></span></li>
+          <li><strong>Customer health and churn signals</strong><span>Reading usage, renewals and what customers say to decide who needs a call first. <em>Project 7</em></span></li>
           <li><strong>Explaining technical results</strong><span>Turning test results into clear recommendations.</span></li>
           <li><strong>Teamwork</strong><span>Co-writing my master's thesis. <em>Project 5</em></span></li>
         </ul>
@@ -429,6 +431,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI for internal audit</span></button>
       <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 5</span><span class="t-name">Master's thesis</span><span class="t-sub">AI and accountant performance</span></button>
       <button class="tab" role="tab" id="tab-6" aria-controls="project-6" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 6</span><span class="t-name">Support Assistant</span><span class="t-sub">AI support with human review</span></button>
+      <button class="tab" role="tab" id="tab-7" aria-controls="project-7" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 7</span><span class="t-name">Health Monitor</span><span class="t-sub">Which customers need a call?</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -618,6 +621,47 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <figcaption>A real ticket from the run: one customer question fixed the answer for every future customer who asks the same thing.</figcaption>
       </figure>
     </article>
+
+    <article class="project" role="tabpanel" id="project-7" aria-labelledby="tab-7" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Project 7</span>
+        <h3>Customer Health Monitor: which customers need a call this week?</h3>
+        <p class="meta">Built with Python, the Gemini API and GitHub Pages · Portfolio project for Customer Success · Fictional company and data</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>A Customer Success Manager has to spot early which customers might leave. CRM tools give an automatic health score, but it only counts numbers like usage and tickets. The clearest warnings are often in what customers say: a new CFO "reviewing all our finance tools", a takeover, or a polite but frustrated email.</dd>
+        <dt class="label">What I built</dt>
+        <dd>A dashboard for 12 customers of a made-up software company. For each customer, the AI reads the numbers, tickets and meeting notes, suggests green, yellow or red, <strong>quotes the exact sentences</strong> behind it and proposes one next step. The CSM agrees or overrides with a reason, every decision is logged, and the page shows the revenue at risk in DKK.</dd>
+        <dt class="label">How I tested it</dt>
+        <dd>I first labelled every customer by hand, before seeing any score. Then I compared two methods against my labels.</dd>
+      </dl>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Metric</th><th class="num">Rules (numbers only)</th><th class="num chosen">AI (numbers and words)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Agrees with my hand labels</td><td class="num">7 of 12</td><td class="num chosen">10 of 12</td></tr>
+            <tr><td>Quotes not found in the record</td><td class="num">–</td><td class="num chosen">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="rows">
+        <dt class="label">What I learned</dt>
+        <dd>Every customer the rules missed was a case where the signal was in the words: a seasonal business that looked like it was leaving, a loyal customer who complains a lot, a sarcastic "Great… love it." The AI caught most of these. On the 2 borderline customers where it disagreed with me, I was the more cautious one. That's why a person makes the final call.</dd>
+        <dt class="label">Controls</dt>
+        <dd>Every AI quote is checked word for word against the customer's record, the AI only suggests, and the page uses answers prepared in advance, so no data or API key leaves it.</dd>
+      </dl>
+      <figure>
+        <img src="img/health-dashboard.jpg" alt="Customer Health Monitor dashboard with revenue at risk and a comparison of rules and AI against hand labels" loading="lazy">
+        <figcaption>Revenue at risk, and the test: rules 7 of 12, AI 10 of 12 against my hand labels.</figcaption>
+      </figure>
+      <div class="links">
+        <a class="btn primary" href="https://andreeapana1.github.io/customer-health-monitor/" target="_blank" rel="noopener">Try the live dashboard</a>
+        <a class="btn" href="https://github.com/andreeapana1/customer-health-monitor" target="_blank" rel="noopener">Source code</a>
+      </div>
+    </article>
   </section>
 
   <section aria-labelledby="how-h" class="approach">
@@ -743,7 +787,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><span class="yr">2022</span><strong>Bachelor's at SDU</strong><span class="d">Market and Management Anthropology</span></li>
           <li><span class="yr">2023</span><strong>Aviation Cloud</strong><span class="d">Data Consultant, Airport Data team</span></li>
           <li><span class="yr">2025</span><strong>Master's and Ria</strong><span class="d">MSc Management Accounting · KYC/AML work at Ria</span></li>
-          <li class="now"><span class="yr">2026</span><strong>AI projects and thesis</strong><span class="d">Six AI projects · thesis on AI and performance</span></li>
+          <li class="now"><span class="yr">2026</span><strong>AI projects and thesis</strong><span class="d">Seven AI projects · thesis on AI and performance</span></li>
           <li class="next"><span class="yr">Next</span><strong>Your team?</strong><span class="d">Available right away</span></li>
         </ol>
       </div>
@@ -782,7 +826,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-6])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-7])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
     Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"], a.fun-link'), function (a) {
@@ -909,7 +953,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
   function goTo(section) {
-    var m = /^project-([1-6])$/.exec(section);
+    var m = /^project-([1-7])$/.exec(section);
     if (m) {
       var tab = document.getElementById("tab-" + m[1]); if (tab) tab.click();
       var proj = document.querySelector(".projects"); if (proj) proj.scrollIntoView({ block: "start" });

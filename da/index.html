@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -272,6 +272,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
+  .tab:last-child { grid-column: 1 / -1; }
   .steps-flow { grid-template-columns: 1fr; }
   .xp { grid-template-columns: 1fr; padding: 20px 18px; }
   .edu { grid-template-columns: 1fr; }
@@ -309,7 +310,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Resumé">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">Jeg kombinerer en uddannelse i management accounting med praktisk erfaring inden for compliance og dataarbejde. Mine AI-projekter tager udgangspunkt i et reelt problem, ender i noget, folk kan bruge, og indeholder kontrol af, om AI'en har ret.</p>
-      <p>De seks projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, et værktøj til intern revision af 490.000 korttransaktioner, og mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på, og en kundesupport-assistent, hvor et menneske godkender hvert svar, og hver rettelse forbedrer vidensbasen.</p>
+      <p>De syv projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, et værktøj til intern revision af 490.000 korttransaktioner, mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på, en kundesupport-assistent, hvor et menneske godkender hvert svar, og et dashboard for kundesundhed, hvor jeg testede en AI-vurdering mod en regelbaseret score.</p>
     </div>
     <div class="facts">
       <div><span class="label">Uddannelse</span><span>Cand.merc. i Management Accounting (Strategy Management), SDU · færdig juni 2027</span></div>
@@ -409,6 +410,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Sprog</strong><span>Engelsk (flydende), dansk (mellemniveau), rumænsk (modersmål).</span></li>
           <li><strong>Rolig kundehåndtering</strong><span>Professionel i svære samtaler ved skranken.</span></li>
           <li><strong>Kundesupport-workflows</strong><span>Gennemgår svar, før de når kunden, og gør rettelser til bedre fælles viden. <em>Projekt 6</em></span></li>
+          <li><strong>Kundesundhed og churn-signaler</strong><span>Læser brug, fornyelser og det, kunderne siger, for at afgøre, hvem der skal ringes op først. <em>Projekt 7</em></span></li>
           <li><strong>Formidling af tekniske resultater</strong><span>Gør testresultater til klare anbefalinger.</span></li>
           <li><strong>Teamwork</strong><span>Skriver mit speciale sammen med en medstuderende. <em>Projekt 5</em></span></li>
         </ul>
@@ -429,6 +431,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI til intern revision</span></button>
       <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 5</span><span class="t-name">Speciale</span><span class="t-sub">AI og vurdering af præstationer</span></button>
       <button class="tab" role="tab" id="tab-6" aria-controls="project-6" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 6</span><span class="t-name">Support Assistant</span><span class="t-sub">AI-support med menneskelig godkendelse</span></button>
+      <button class="tab" role="tab" id="tab-7" aria-controls="project-7" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 7</span><span class="t-name">Health Monitor</span><span class="t-sub">Hvilke kunder skal ringes op?</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -618,6 +621,47 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <figcaption>En rigtig sag fra kørslen: ét kundespørgsmål rettede svaret for alle fremtidige kunder, der spørger om det samme.</figcaption>
       </figure>
     </article>
+
+    <article class="project" role="tabpanel" id="project-7" aria-labelledby="tab-7" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Projekt 7</span>
+        <h3>Customer Health Monitor: hvilke kunder skal have et opkald i denne uge?</h3>
+        <p class="meta">Bygget med Python, Gemini API og GitHub Pages · Porteføljeprojekt til Customer Success · Fiktiv virksomhed og data</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>En Customer Success Manager skal tidligt opdage, hvilke kunder der kan være på vej væk. CRM-systemer giver en automatisk health score, men den tæller kun tal som brug og supportsager. De tydeligste advarsler står ofte i det, kunderne siger: en ny CFO, der "gennemgår alle vores økonomisystemer", et opkøb eller en høflig, men frustreret mail.</dd>
+        <dt class="label">Det byggede jeg</dt>
+        <dd>Et dashboard for 12 kunder i en opdigtet softwarevirksomhed. For hver kunde læser AI'en tal, supportsager og mødenoter, foreslår grøn, gul eller rød, <strong>citerer de præcise sætninger</strong> bag vurderingen og foreslår ét næste skridt. CSM'en er enig eller overstyrer med en begrundelse, hver beslutning logges, og siden viser den omsætning, der er i fare, i DKK.</dd>
+        <dt class="label">Sådan testede jeg</dt>
+        <dd>Jeg vurderede først hver kunde selv, før jeg så nogen score. Derefter sammenlignede jeg to metoder med mine vurderinger.</dd>
+      </dl>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Mål</th><th class="num">Regler (kun tal)</th><th class="num chosen">AI (tal og ord)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Enig med mine egne vurderinger</td><td class="num">7 af 12</td><td class="num chosen">10 af 12</td></tr>
+            <tr><td>Citater, der ikke findes i data</td><td class="num">–</td><td class="num chosen">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="rows">
+        <dt class="label">Det lærte jeg</dt>
+        <dd>Alle de kunder, reglerne ramte forkert, var tilfælde, hvor signalet stod i ordene: en sæsonvirksomhed, der så ud til at forsvinde, en loyal kunde, der klager meget, og et sarkastisk "Great… love it." AI'en fangede de fleste. Ved de 2 grænsetilfælde, hvor den var uenig med mig, var jeg den mest forsigtige. Derfor træffer et menneske den endelige beslutning.</dd>
+        <dt class="label">Kontrol</dt>
+        <dd>Hvert AI-citat tjekkes ord for ord mod kundens data, AI'en foreslår kun, og siden bruger svar, der er lavet på forhånd, så hverken data eller API-nøgle forlader den.</dd>
+      </dl>
+      <figure>
+        <img src="../img/health-dashboard.jpg" alt="Customer Health Monitor-dashboard med omsætning i fare og en sammenligning af regler og AI med mine egne vurderinger" loading="lazy">
+        <figcaption>Omsætning i fare og testen: regler 7 af 12, AI 10 af 12 sammenlignet med mine egne vurderinger. Skærmbilledet er på engelsk.</figcaption>
+      </figure>
+      <div class="links">
+        <a class="btn primary" href="https://andreeapana1.github.io/customer-health-monitor/" target="_blank" rel="noopener">Prøv dashboardet</a>
+        <a class="btn" href="https://github.com/andreeapana1/customer-health-monitor" target="_blank" rel="noopener">Kildekode</a>
+      </div>
+    </article>
   </section>
 
   <section aria-labelledby="how-h" class="approach">
@@ -743,7 +787,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><span class="yr">2022</span><strong>Bachelor på SDU</strong><span class="d">Markeds- og Managementantropologi</span></li>
           <li><span class="yr">2023</span><strong>Aviation Cloud</strong><span class="d">Data Consultant, Airport Data-teamet</span></li>
           <li><span class="yr">2025</span><strong>Kandidat og Ria</strong><span class="d">Cand.merc. i Management Accounting · KYC/AML-arbejde hos Ria</span></li>
-          <li class="now"><span class="yr">2026</span><strong>AI-projekter og speciale</strong><span class="d">Seks AI-projekter · speciale om AI og præstationer</span></li>
+          <li class="now"><span class="yr">2026</span><strong>AI-projekter og speciale</strong><span class="d">Syv AI-projekter · speciale om AI og præstationer</span></li>
           <li class="next"><span class="yr">Næste</span><strong>Dit team?</strong><span class="d">Kan starte med det samme</span></li>
         </ol>
       </div>
@@ -783,7 +827,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-6])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-7])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
     Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"], a.fun-link'), function (a) {
@@ -910,7 +954,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
   function goTo(section) {
-    var m = /^project-([1-6])$/.exec(section);
+    var m = /^project-([1-7])$/.exec(section);
     if (m) {
       var tab = document.getElementById("tab-" + m[1]); if (tab) tab.click();
       var proj = document.querySelector(".projects"); if (proj) proj.scrollIntoView({ block: "start" });
