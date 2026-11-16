@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -178,6 +178,14 @@ thead th.chosen { color: var(--accent); }
 td.num { text-align: right; } th.num { text-align: right; }
 
 .status { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+
+/* Correction example (Project 6) */
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 0.9rem; }
+.flow .label { color: var(--accent); }
+.flow .old { text-decoration: line-through; color: var(--muted); }
+.flow .ok { font-family: var(--mono); font-size: 0.72rem; color: var(--good); text-transform: uppercase; letter-spacing: 0.06em; }
+@media (max-width: 760px) { .flow { grid-template-columns: 1fr; } }
 
 /* Approach */
 .approach { display: flex; flex-direction: column; gap: 24px; }
@@ -264,7 +272,6 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
-  .tab:last-child { grid-column: 1 / -1; }
   .steps-flow { grid-template-columns: 1fr; }
   .xp { grid-template-columns: 1fr; padding: 20px 18px; }
   .edu { grid-template-columns: 1fr; }
@@ -302,7 +309,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Resumé">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">Jeg kombinerer en uddannelse i management accounting med praktisk erfaring inden for compliance og dataarbejde. Mine AI-projekter tager udgangspunkt i et reelt problem, ender i noget, folk kan bruge, og indeholder kontrol af, om AI'en har ret.</p>
-      <p>De fem projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, et værktøj til intern revision af 490.000 korttransaktioner, og mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på.</p>
+      <p>De seks projekter nedenfor viser, hvordan jeg arbejder: en eksamenssimulator, jeg designede ud fra min egen erfaring, en policy-chatbot, hvor jeg sammenlignede tre løsninger med målte resultater, en AI-assistent til KYC/AML-indberetninger baseret på mit compliance-arbejde, et værktøj til intern revision af 490.000 korttransaktioner, og mit speciale om, hvordan AI ændrer måden, revisorers og bogholderes præstationer vurderes på, og en kundesupport-assistent, hvor et menneske godkender hvert svar, og hver rettelse forbedrer vidensbasen.</p>
     </div>
     <div class="facts">
       <div><span class="label">Uddannelse</span><span>Cand.merc. i Management Accounting (Strategy Management), SDU · færdig juni 2027</span></div>
@@ -373,7 +380,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Management accounting</strong><span>Performancemåling, agentteori, omkostninger og strategi. <em>Projekt 5</em></span></li>
           <li><strong>KYC- og AML-compliance</strong><span>Opdage advarselstegn og sende sager videre til compliance. <em>Projekt 3</em></span></li>
           <li><strong>Afstemning og revisionsspor</strong><span>Daglig kasseafstemning og dokumentation hos Ria.</span></li>
-          <li><strong>Kontroltankegang</strong><span>Hvert AI-svar angiver sin kilde, og mennesker træffer beslutningerne. <em>Projekt 2, 3, 4</em></span></li>
+          <li><strong>Kontroltankegang</strong><span>Hvert AI-svar angiver sin kilde, mennesker træffer beslutningerne, og hver godkendelse logges. <em>Projekt 2, 3, 4, 6</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
@@ -401,6 +408,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <ul>
           <li><strong>Sprog</strong><span>Engelsk (flydende), dansk (mellemniveau), rumænsk (modersmål).</span></li>
           <li><strong>Rolig kundehåndtering</strong><span>Professionel i svære samtaler ved skranken.</span></li>
+          <li><strong>Kundesupport-workflows</strong><span>Gennemgår svar, før de når kunden, og gør rettelser til bedre fælles viden. <em>Projekt 6</em></span></li>
           <li><strong>Formidling af tekniske resultater</strong><span>Gør testresultater til klare anbefalinger.</span></li>
           <li><strong>Teamwork</strong><span>Skriver mit speciale sammen med en medstuderende. <em>Projekt 5</em></span></li>
         </ul>
@@ -420,6 +428,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-3" aria-controls="project-3" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 3</span><span class="t-name">Referral Assistant</span><span class="t-sub">AI til KYC/AML-tjek</span></button>
       <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI til intern revision</span></button>
       <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 5</span><span class="t-name">Speciale</span><span class="t-sub">AI og vurdering af præstationer</span></button>
+      <button class="tab" role="tab" id="tab-6" aria-controls="project-6" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Projekt 6</span><span class="t-name">Support Assistant</span><span class="t-sub">AI-support med menneskelig godkendelse</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -579,6 +588,36 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <dd>Det forbinder mine to interesser: at bruge AI i mit eget arbejde og at forstå, hvordan AI ændrer performancemåling og kontrol i organisationer.</dd>
       </dl>
     </article>
+
+    <article class="project" role="tabpanel" id="project-6" aria-labelledby="tab-6" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Projekt 6</span>
+        <h3>Support Assistant: AI-udkast til kundesvar, som et menneske godkender</h3>
+        <p class="meta">Bygget med Claude Code, Python, Google Forms og Gmail · Fag: AI in Accounting and Business, SDU · Fiktive kunder</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>Et supportteam, der bruger AI til at svare kunder, har to risici. Et forkert svar kan nå frem til kunden, og når et menneske retter det, kommer den samme fejl igen næste uge, fordi AI'en aldrig lærer af rettelsen.</dd>
+        <dt class="label">Det byggede jeg</dt>
+        <dd>En lille supportservice for folk, der lærer rumænsk. Jeg valgte emnet, fordi jeg har rumænsk som modersmål og kan se et forkert svar uden at slå det op. Kunderne stiller spørgsmål via en onlineformular. AI'en skriver hvert svarudkast kun ud fra en skriftlig vidensbase. <strong>Intet sendes, før jeg har godkendt det.</strong> Efter godkendelsen mailer systemet spørgsmålet og det endelige svar til kunden.</dd>
+        <dt class="label">Lærer af rettelser</dt>
+        <dd>Når jeg retter et svar, foreslår AI'en også en ændring i vidensbasen med den gamle og den nye tekst side om side. Jeg accepterer, redigerer eller afviser forslaget, og hver beslutning logges.</dd>
+        <dt class="label">Resultat</dt>
+        <dd>10 kundespørgsmål: 5 svar godkendt som de var, 5 rettet. Alle 5 rettelser blev til ændringer i vidensbasen, så fremtidige svar om de emner tager udgangspunkt i den rettede tekst. Intet svar blev sendt, før det var godkendt.</dd>
+        <dt class="label">Kontrol</dt>
+        <dd>AI'en kan ikke godkende sine egne svar, og mail-scriptet nægter at sende noget, der ikke er godkendt eller allerede er sendt.</dd>
+        <dt class="label">Hvorfor det er vigtigt</dt>
+        <dd>Sådan ville jeg drive support i et Customer Success-team: hurtige udkast, et menneske med ansvar for hvert svar, og hvert kundespørgsmål gør den fælles viden bedre.</dd>
+      </dl>
+      <figure>
+        <div class="flow">
+          <div><span class="label">1 · AI-udkast</span><span>"Hvornår man skriver hvad: <span class="old">î skrives alle steder i et ord</span>, og â bruges kun i ordet român…"</span></div>
+          <div><span class="label">2 · Min rettelse</span><span>"Stavereglen er forkert: î kun i starten eller slutningen af et ord, â inde i ordet." Det rettede svar godkendes og mailes.</span></div>
+          <div><span class="label">3 · Rettelse i vidensbasen</span><span>Ny regel: "î skrives kun i starten eller slutningen af et ord. Inde i et ord skrives â (când, mâine, pâine)."</span><span class="ok">✓ Accepteret og indført</span></div>
+        </div>
+        <figcaption>En rigtig sag fra kørslen: ét kundespørgsmål rettede svaret for alle fremtidige kunder, der spørger om det samme.</figcaption>
+      </figure>
+    </article>
   </section>
 
   <section aria-labelledby="how-h" class="approach">
@@ -704,7 +743,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><span class="yr">2022</span><strong>Bachelor på SDU</strong><span class="d">Markeds- og Managementantropologi</span></li>
           <li><span class="yr">2023</span><strong>Aviation Cloud</strong><span class="d">Data Consultant, Airport Data-teamet</span></li>
           <li><span class="yr">2025</span><strong>Kandidat og Ria</strong><span class="d">Cand.merc. i Management Accounting · KYC/AML-arbejde hos Ria</span></li>
-          <li class="now"><span class="yr">2026</span><strong>AI-projekter og speciale</strong><span class="d">Fem AI-projekter · speciale om AI og præstationer</span></li>
+          <li class="now"><span class="yr">2026</span><strong>AI-projekter og speciale</strong><span class="d">Seks AI-projekter · speciale om AI og præstationer</span></li>
           <li class="next"><span class="yr">Næste</span><strong>Dit team?</strong><span class="d">Kan starte med det samme</span></li>
         </ol>
       </div>
@@ -744,7 +783,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-6])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
     Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"], a.fun-link'), function (a) {
@@ -871,7 +910,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
   function goTo(section) {
-    var m = /^project-([1-5])$/.exec(section);
+    var m = /^project-([1-6])$/.exec(section);
     if (m) {
       var tab = document.getElementById("tab-" + m[1]); if (tab) tab.click();
       var proj = document.querySelector(".projects"); if (proj) proj.scrollIntoView({ block: "start" });

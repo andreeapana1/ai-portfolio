@@ -124,7 +124,7 @@ header.intro img { width: 168px; height: 168px; border-radius: 50%; object-fit: 
 .skill-group li em { font-style: normal; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); white-space: nowrap; }
 
 /* Project tabs */
-.tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .tab {
   font: inherit; text-align: left; cursor: pointer; color: var(--fg);
   background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -178,6 +178,14 @@ thead th.chosen { color: var(--accent); }
 td.num { text-align: right; } th.num { text-align: right; }
 
 .status { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+
+/* Correction example (Project 6) */
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 0.9rem; }
+.flow .label { color: var(--accent); }
+.flow .old { text-decoration: line-through; color: var(--muted); }
+.flow .ok { font-family: var(--mono); font-size: 0.72rem; color: var(--good); text-transform: uppercase; letter-spacing: 0.06em; }
+@media (max-width: 760px) { .flow { grid-template-columns: 1fr; } }
 
 /* Approach */
 .approach { display: flex; flex-direction: column; gap: 24px; }
@@ -264,7 +272,6 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   .steps, .pair, .principles, .skills, .role-groups, .looking-meta { grid-template-columns: 1fr; }
   .looking { padding: 20px 18px; }
   .tabs { grid-template-columns: 1fr 1fr; }
-  .tab:last-child { grid-column: 1 / -1; }
   .steps-flow { grid-template-columns: 1fr; }
   .xp { grid-template-columns: 1fr; padding: 20px 18px; }
   .edu { grid-template-columns: 1fr; }
@@ -302,7 +309,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
   <section class="summary" aria-label="Summary">
     <div style="display:flex;flex-direction:column;gap:14px">
       <p class="lead">I combine a management accounting education with hands-on experience in compliance and data work. My AI projects start from a real problem, end in something people can use, and include checks on whether the AI is right.</p>
-      <p>The five projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, an internal audit tool for 490,000 card transactions, and my master's thesis on how AI changes the way accountants' performance is evaluated.</p>
+      <p>The six projects below show how I work: an exam simulator I designed from my own experience, a policy chatbot where I compared three approaches with measured results, an AI assistant for KYC/AML referrals based on my compliance work, an internal audit tool for 490,000 card transactions, my master's thesis on how AI changes the way accountants' performance is evaluated, and a customer support assistant where a person approves every answer and each correction improves the knowledge base.</p>
     </div>
     <div class="facts">
       <div><span class="label">Education</span><span>MSc Management Accounting (Strategy Management), SDU · graduating June 2027</span></div>
@@ -373,7 +380,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><strong>Management accounting</strong><span>Performance measurement, agency theory, cost and strategy. <em>Project 5</em></span></li>
           <li><strong>KYC and AML compliance</strong><span>Spotting warning signs and referring cases to compliance. <em>Project 3</em></span></li>
           <li><strong>Reconciliation and audit trails</strong><span>Daily cash reconciliation and documentation at Ria.</span></li>
-          <li><strong>Controls thinking</strong><span>Every AI answer cites its source, and people make the decisions. <em>Projects 2, 3, 4</em></span></li>
+          <li><strong>Controls thinking</strong><span>Every AI answer cites its source, people make the decisions, and every approval is logged. <em>Projects 2, 3, 4, 6</em></span></li>
         </ul>
       </div>
       <div class="skill-group">
@@ -401,6 +408,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <ul>
           <li><strong>Languages</strong><span>English (fluent), Danish (intermediate), Romanian (native).</span></li>
           <li><strong>Calm customer handling</strong><span>Professional in difficult conversations at the counter.</span></li>
+          <li><strong>Customer support workflows</strong><span>Reviewing answers before they reach customers, and turning corrections into better shared knowledge. <em>Project 6</em></span></li>
           <li><strong>Explaining technical results</strong><span>Turning test results into clear recommendations.</span></li>
           <li><strong>Teamwork</strong><span>Co-writing my master's thesis. <em>Project 5</em></span></li>
         </ul>
@@ -420,6 +428,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
       <button class="tab" role="tab" id="tab-3" aria-controls="project-3" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 3</span><span class="t-name">Referral Assistant</span><span class="t-sub">AI for KYC/AML checks</span></button>
       <button class="tab" role="tab" id="tab-4" aria-controls="project-4" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 4</span><span class="t-name">P-card Audit Tool</span><span class="t-sub">AI for internal audit</span></button>
       <button class="tab" role="tab" id="tab-5" aria-controls="project-5" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 5</span><span class="t-name">Master's thesis</span><span class="t-sub">AI and accountant performance</span></button>
+      <button class="tab" role="tab" id="tab-6" aria-controls="project-6" aria-selected="false" tabindex="-1" type="button"><span class="t-num">Project 6</span><span class="t-name">Support Assistant</span><span class="t-sub">AI support with human review</span></button>
     </div>
 
     <article class="project" role="tabpanel" id="project-1" aria-labelledby="tab-1" tabindex="0">
@@ -579,6 +588,36 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         <dd>It connects my two interests: using AI in my own work, and understanding how AI changes performance measurement and control in organisations.</dd>
       </dl>
     </article>
+
+    <article class="project" role="tabpanel" id="project-6" aria-labelledby="tab-6" tabindex="0">
+      <div class="p-head">
+        <span class="p-num">Project 6</span>
+        <h3>Support Assistant: AI-drafted customer answers that a person approves</h3>
+        <p class="meta">Built with Claude Code, Python, Google Forms and Gmail · Course: AI in Accounting and Business, SDU · Fictional customers</p>
+      </div>
+      <dl class="rows">
+        <dt class="label">Problem</dt>
+        <dd>A support team that uses AI to answer customers faces two risks. A wrong answer can reach the customer, and when a person corrects it, the same mistake comes back next week because the AI never learns from the correction.</dd>
+        <dt class="label">What I built</dt>
+        <dd>A small support service for people learning Romanian. I chose that subject because I'm a native speaker, so I can spot a wrong answer without looking it up. Customers ask questions through an online form. The AI drafts each answer only from a written knowledge base. <strong>Nothing is sent until I approve it.</strong> After approval, the system emails the question and final answer to the customer.</dd>
+        <dt class="label">Learning from corrections</dt>
+        <dd>When I correct an answer, the AI also proposes a change to the knowledge base, showing the old and new text side by side. I accept, edit or reject it, and every decision is logged.</dd>
+        <dt class="label">Result</dt>
+        <dd>10 customer questions: 5 answers approved as drafted, 5 corrected. All 5 corrections became knowledge-base fixes, so future answers on those topics start from the corrected text. No answer was sent before it was approved.</dd>
+        <dt class="label">Controls</dt>
+        <dd>The AI can't approve its own answers, and the email script refuses to send anything that isn't approved or was already sent.</dd>
+        <dt class="label">Why it matters</dt>
+        <dd>It's how I would run support in a Customer Success team: fast drafts, a person responsible for every answer, and each customer question improving the shared knowledge.</dd>
+      </dl>
+      <figure>
+        <div class="flow">
+          <div><span class="label">1 · AI draft</span><span>"When to write which: <span class="old">î is written in all positions in a word</span>, and â is used only in the word român…"</span></div>
+          <div><span class="label">2 · My correction</span><span>"Spelling rule wrong: î only at the start or end of a word, â inside a word." The corrected answer is approved and emailed.</span></div>
+          <div><span class="label">3 · Knowledge base fix</span><span>New rule: "î is written only at the beginning or the end of a word. Inside a word, â is written (când, mâine, pâine)."</span><span class="ok">✓ Accepted and applied</span></div>
+        </div>
+        <figcaption>A real ticket from the run: one customer question fixed the answer for every future customer who asks the same thing.</figcaption>
+      </figure>
+    </article>
   </section>
 
   <section aria-labelledby="how-h" class="approach">
@@ -704,7 +743,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
           <li><span class="yr">2022</span><strong>Bachelor's at SDU</strong><span class="d">Market and Management Anthropology</span></li>
           <li><span class="yr">2023</span><strong>Aviation Cloud</strong><span class="d">Data Consultant, Airport Data team</span></li>
           <li><span class="yr">2025</span><strong>Master's and Ria</strong><span class="d">MSc Management Accounting · KYC/AML work at Ria</span></li>
-          <li class="now"><span class="yr">2026</span><strong>AI projects and thesis</strong><span class="d">Five AI projects · thesis on AI and performance</span></li>
+          <li class="now"><span class="yr">2026</span><strong>AI projects and thesis</strong><span class="d">Six AI projects · thesis on AI and performance</span></li>
           <li class="next"><span class="yr">Next</span><strong>Your team?</strong><span class="d">Available right away</span></li>
         </ol>
       </div>
@@ -743,7 +782,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
         if (n !== null) { e.preventDefault(); show(n, true); }
       });
     });
-    function fromHash() { var m = /^#project-([1-5])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
+    function fromHash() { var m = /^#project-([1-6])$/.exec(location.hash); show(m ? Number(m[1]) - 1 : 0); }
     window.addEventListener('hashchange', fromHash);
     fromHash();
     Array.prototype.forEach.call(document.querySelectorAll('.step .example a[href^="#project-"], a.fun-link'), function (a) {
@@ -870,7 +909,7 @@ footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
   function goTo(section) {
-    var m = /^project-([1-5])$/.exec(section);
+    var m = /^project-([1-6])$/.exec(section);
     if (m) {
       var tab = document.getElementById("tab-" + m[1]); if (tab) tab.click();
       var proj = document.querySelector(".projects"); if (proj) proj.scrollIntoView({ block: "start" });
